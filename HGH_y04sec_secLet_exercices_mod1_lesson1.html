@@ -971,7 +971,27 @@
             </div>
         </div>
     </div>
-
+<script src="HGH-i18n.js"></script>
+<script src="HGH-options.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var PAGE_TRANSLATIONS = {
+        ar: {
+            'lesson-title': 'تمارين – الحرب العالمية الأولى: الأسباب والنتائج',
+            'lesson-subtitle': '📝 تمارين تفاعلية – أجب ثم تحقق من الإجابة'
+        },
+        en: {
+            'lesson-title': 'Exercises – World War I: Causes and Consequences',
+            'lesson-subtitle': '📝 Interactive exercises – Answer then check'
+        },
+        fr: {
+            'lesson-title': 'Exercices – La Première Guerre mondiale : causes et conséquences',
+            'lesson-subtitle': '📝 Exercices interactifs – Répondez puis vérifiez'
+        }
+    };
+    HGH_initOptions(PAGE_TRANSLATIONS);
+});
+</script>
     <!-- ═══════════════ SCRIPTS ═══════════════ -->
     <script>
         /* ================================================================
@@ -1026,126 +1046,7 @@
         /* ================================================================
            THEME & LANGUAGE – Reused from lesson template
            ================================================================ */
-        (function() {
-            const translations = {
-                ar: {
-                    'header-line1': 'دروس تاريخ',
-                    'header-line2': 'باكالوريا آداب واقتصاد',
-                    'theme-toggle-text': 'السمة',
-                    'theme-toggle-title': 'تبديل الوضع الليلي / النهاري',
-                    'theme-toggle-aria': 'تبديل السمة',
-                    'lang-select-aria': 'اختيار اللغة',
-                    'lesson-title': 'تمارين – الحرب العالمية الأولى: الأسباب والنتائج',
-                    'lesson-subtitle': '📝 تمارين تفاعلية – أجب ثم تحقق من الإجابة',
-                    'footer-version': 'النسخة 0.0.1',
-                    'footer-visit': 'قم بزيارتنا',
-                    'footer-developer': 'المطور: زياد الماجري'
-                },
-                en: {
-                    'header-line1': 'History Lessons',
-                    'header-line2': 'Baccalaureate Arts & Economics',
-                    'theme-toggle-text': 'Theme',
-                    'theme-toggle-title': 'Toggle dark / light mode',
-                    'theme-toggle-aria': 'Toggle theme',
-                    'lang-select-aria': 'Select language',
-                    'lesson-title': 'Exercises – World War I: Causes and Consequences',
-                    'lesson-subtitle': '📝 Interactive exercises – Answer then check',
-                    'footer-version': 'Version 0.0.1',
-                    'footer-visit': 'Visit Us',
-                    'footer-developer': 'Developer: Zied Majeri'
-                },
-                fr: {
-                    'header-line1': "Leçons d'Histoire",
-                    'header-line2': 'Baccalauréat Lettres & Économie',
-                    'theme-toggle-text': 'Thème',
-                    'theme-toggle-title': 'Basculer mode sombre / clair',
-                    'theme-toggle-aria': 'Changer le thème',
-                    'lang-select-aria': 'Choisir la langue',
-                    'lesson-title': 'Exercices – La Première Guerre mondiale : causes et conséquences',
-                    'lesson-subtitle': '📝 Exercices interactifs – Répondez puis vérifiez',
-                    'footer-version': 'Version 0.0.1',
-                    'footer-visit': 'Visitez-nous',
-                    'footer-developer': 'Développeur : Zied Majeri'
-                }
-            };
-            const html = document.documentElement;
-            const body = document.body;
-            const themeToggle = document.getElementById('themeToggle');
-            const languageSelect = document.getElementById('languageSelect');
-            const STORAGE_THEME_KEY = 'ww1-exercises-theme';
-            const STORAGE_DIR_KEY = 'ww1-exercises-dir';
-            const STORAGE_LANG_KEY = 'ww1-exercises-lang';
-
-            function getStoredTheme() { try { return localStorage.getItem(STORAGE_THEME_KEY); } catch (e) { return null; } }
-
-            function setStoredTheme(theme) { try { localStorage.setItem(STORAGE_THEME_KEY, theme); } catch (e) {} }
-
-            function getStoredDir() { try { return localStorage.getItem(STORAGE_DIR_KEY); } catch (e) { return null; } }
-
-            function setStoredDir(dir) { try { localStorage.setItem(STORAGE_DIR_KEY, dir); } catch (e) {} }
-
-            function getStoredLang() { try { return localStorage.getItem(STORAGE_LANG_KEY); } catch (e) { return null; } }
-
-            function setStoredLang(lang) { try { localStorage.setItem(STORAGE_LANG_KEY, lang); } catch (e) {} }
-
-            function applyTheme(theme) {
-                if (theme === 'dark') { html.setAttribute('data-theme', 'dark'); } else { html.removeAttribute('data-theme'); }
-            }
-
-            function applyDir(dir) {
-                if (dir === 'ltr') { body.classList.add('HGH-History-ltr');
-                    html.setAttribute('dir', 'ltr'); } else { body.classList.remove('HGH-History-ltr');
-                    html.setAttribute('dir', 'rtl'); }
-            }
-
-            function translatePage(lang) {
-                if (!translations[lang]) { lang = 'ar'; }
-                document.querySelectorAll('[data-i18n]').forEach(function(el) {
-                    var key = el.getAttribute('data-i18n');
-                    if (translations[lang] && translations[lang][key]) { el.textContent = translations[lang][key]; }
-                });
-                document.querySelectorAll('[data-i18n-title]').forEach(function(el) {
-                    var key = el.getAttribute('data-i18n-title');
-                    if (translations[lang] && translations[lang][key]) { el.setAttribute('title', translations[lang][key]); }
-                });
-                document.querySelectorAll('[data-i18n-aria]').forEach(function(el) {
-                    var key = el.getAttribute('data-i18n-aria');
-                    if (translations[lang] && translations[lang][key]) { el.setAttribute('aria-label', translations[lang][key]); }
-                });
-                html.setAttribute('lang', lang);
-                if (lang === 'ar') { applyDir('rtl');
-                    setStoredDir('rtl'); } else { applyDir('ltr');
-                    setStoredDir('ltr'); }
-                if (languageSelect && languageSelect.value !== lang) { languageSelect.value = lang; }
-                setStoredLang(lang);
-            }
-
-            function initialize() {
-                const savedTheme = getStoredTheme();
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-                applyTheme(initialTheme);
-                const savedDir = getStoredDir();
-                if (savedDir) { applyDir(savedDir); }
-                const savedLang = getStoredLang();
-                const initialLang = savedLang || 'ar';
-                if (languageSelect) { languageSelect.value = initialLang; }
-                translatePage(initialLang);
-            }
-            themeToggle.addEventListener('click', function() {
-                const currentTheme = html.getAttribute('data-theme');
-                const newTheme = (currentTheme === 'dark') ? 'light' : 'dark';
-                applyTheme(newTheme);
-                setStoredTheme(newTheme);
-            });
-            languageSelect.addEventListener('change', function() {
-                translatePage(this.value);
-            });
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-                if (!getStoredTheme()) { applyTheme(e.matches ? 'dark' : 'light'); }
-            });
-            initialize();
-        })();
+        
 
         /* ================================================================
            PDF MODAL – Adapted for exercises page
