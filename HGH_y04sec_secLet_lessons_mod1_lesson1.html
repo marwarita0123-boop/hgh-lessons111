@@ -887,9 +887,8 @@
             body.HGH-History-ltr .HGH-History-site-footer { flex-direction: row-reverse !important; }
             body.HGH-History-ltr .HGH-History-header-center { flex-direction: row !important; }
 
-            /* Hide exercise interactive buttons in print */
+            /* Print exercises styles – show answers, hide buttons */
             .HGH-History-exercise-show-btn { display: none !important; }
-            /* Always show answer wrappers in print */
             .HGH-History-exercise-answer-wrapper {
                 max-height: none !important;
                 opacity: 1 !important;
@@ -902,8 +901,6 @@
             .HGH-History-exercise-item {
                 page-break-inside: avoid;
             }
-
-            /* Inserted exercises container */
             #inserted-exercises-container {
                 page-break-before: always;
             }
@@ -1344,7 +1341,7 @@
             initialize();
         })();
 
-        // PDF Modal – Fetch exercises content and inject into page for printing
+        // PDF Modal – Build static exercises and print
         (function() {
             const modalOverlay = document.getElementById('pdfModalOverlay');
             const openBtn = document.getElementById('openPdfModalBtn');
@@ -1354,7 +1351,70 @@
             const chkDefinitions = document.getElementById('chkDefinitions');
             const chkImages = document.getElementById('chkImages');
             const chkExercises = document.getElementById('chkExercises');
-            const EXERCISE_FILE = 'HGH_y04sec_secLet_exercices_mod1_lesson1.html';
+
+            // Exercise data – same as in exercises page
+            const exerciseType01Data = {
+                title: '📝 عرّف المصطلحات التالية',
+                exercises: [
+                    {
+                        term: 'السياسة العالمية (Weltpolitik)',
+                        answer: 'استراتيجية توسعية انتهجها الإمبراطور الألماني <strong>غليوم الثاني</strong> بعد إقالة بسمارك عام 1890، هدفت إلى بناء أسطول بحري ضخم، واقتناص مستعمرات في إفريقيا وآسيا، ومد النفوذ الاقتصادي عبر مشروع سكة حديد برلين-بغداد. أدت هذه السياسة إلى صدام مباشر مع المصالح البريطانية والفرنسية والروسية، وساهمت في تشكيل أحلاف مضادة لألمانيا.'
+                    },
+                    {
+                        term: 'الحلف الثلاثي',
+                        answer: 'تحالف عسكري دفاعي نشأ بين <strong>ألمانيا والإمبراطورية النمساوية المجرية</strong> (أكتوبر 1879)، وانضمت إليه <strong>إيطاليا</strong> (مارس 1882). هدف إلى عزل فرنسا والحفاظ على الوضع القائم في أوروبا. انسحبت إيطاليا منه عام 1915، وتدعم الحلف لاحقاً بانضمام <strong>الدولة العثمانية</strong> (1914) و<strong>بلغاريا</strong> (1915) ليشكل نواة "دول المركز" خلال الحرب العالمية الأولى.'
+                    },
+                    {
+                        term: 'جمعية الأمم',
+                        answer: 'منظمة دولية تأسست عام 1920 بموجب <strong>معاهدة فرساي</strong> ومقرها <strong>جنيف</strong>، استناداً إلى المبدأ الرابع عشر من برنامج الرئيس الأمريكي <strong>وودرو ويلسون</strong>. هدفت إلى ضمان الأمن الجماعي، والحد من التسلح، وتسوية النزاعات سلمياً. لكنها افتقرت إلى جيش دائم، وتطلبت قراراتها الإجماع، ولم تنضم إليها <strong>الولايات المتحدة</strong>، مما أضعف فعاليتها وجعلها عاجزة عن منع الحرب العالمية الثانية.'
+                    }
+                ]
+            };
+
+            const exerciseType02Data = {
+                title: '🗺️ أكمل الخريطة التالية',
+                incompleteMap: 'assets2/exercises/history/worldBeforeWWI1.jpg',
+                completeMap: 'assets2/exercises/history/worldBeforeWWI2.jpg',
+                caption: 'خريطة أوروبا قبل الحرب العالمية الأولى – أجب عن الأسئلة ثم تحقق من الإجابة',
+                answerCaption: 'الخريطة المكتملة – نموذج الإجابة',
+            };
+
+            // Build static HTML for type01 exercises
+            function buildType01HTML() {
+                let html = '<div class="HGH-History-section-card" id="print-type01">';
+                html += '<h2 class="HGH-History-exercise-section-title">' + exerciseType01Data.title + '</h2>';
+                exerciseType01Data.exercises.forEach((ex, index) => {
+                    html += '<div class="HGH-History-exercise-item">';
+                    html += '<div class="HGH-History-exercise-term"><span class="HGH-History-exercise-number">' + (index + 1) + '</span> ' + ex.term + '</div>';
+                    html += '<div class="HGH-History-exercise-answer-wrapper" style="max-height: none; opacity: 1; overflow: visible; margin-top: 10px;">';
+                    html += '<div class="HGH-History-exercise-answer-content"><strong>📖 التعريف:</strong> ' + ex.answer + '</div>';
+                    html += '</div>';
+                    html += '</div>';
+                });
+                html += '</div>';
+                return html;
+            }
+
+            // Build static HTML for type02 (map) exercises
+            function buildType02HTML() {
+                let html = '<div class="HGH-History-section-card" id="print-type02">';
+                html += '<h2 class="HGH-History-exercise-section-title">' + exerciseType02Data.title + '</h2>';
+                html += '<div class="HGH-History-exercise-map-wrapper">';
+                html += '<img src="' + exerciseType02Data.incompleteMap + '" alt="خريطة غير مكتملة" style="max-width:100%;height:auto;max-height:420px;border-radius:10px;border:1px solid #ccc;box-shadow:0 2px 10px rgba(0,0,0,0.06);">';
+                html += '<p class="HGH-History-exercise-map-caption">' + exerciseType02Data.caption + '</p>';
+                html += '</div>';
+                html += '<div class="HGH-History-exercise-answer-wrapper" style="max-height: none; opacity: 1; overflow: visible; margin-top: 14px;">';
+                html += '<div class="HGH-History-exercise-map-answer" style="border-top:2px solid var(--HGH-History-accent-color); padding-top:16px;">';
+                html += '<span class="HGH-History-exercise-map-label">🗺️ الإجابة</span>';
+                html += '<div class="HGH-History-exercise-map-wrapper">';
+                html += '<img src="' + exerciseType02Data.completeMap + '" alt="الخريطة المكتملة" style="max-width:100%;height:auto;max-height:420px;border-radius:10px;border:1px solid #ccc;box-shadow:0 2px 10px rgba(0,0,0,0.06);">';
+                html += '<p class="HGH-History-exercise-map-caption">' + exerciseType02Data.answerCaption + '</p>';
+                html += '</div>';
+                html += '</div>';
+                html += '</div>';
+                html += '</div>';
+                return html;
+            }
 
             openBtn.addEventListener('click', () => modalOverlay.classList.add('active'));
             function closeModal() { modalOverlay.classList.remove('active'); }
@@ -1371,82 +1431,47 @@
                 if (!chkImages.checked) {
                     document.body.classList.add('no-images');
                 }
-
                 closeModal();
 
+                // Remove any previously inserted containers
+                const oldType01 = document.getElementById('print-type01');
+                const oldType02 = document.getElementById('print-type02');
+                if (oldType01) oldType01.remove();
+                if (oldType02) oldType02.remove();
+
                 if (chkExercises.checked) {
-                    // Fetch exercises HTML and inject
-                    fetch(EXERCISE_FILE)
-                        .then(response => response.text())
-                        .then(htmlText => {
-                            // Create a temporary DOM to parse the fetched HTML
-                            const parser = new DOMParser();
-                            const doc = parser.parseFromString(htmlText, 'text/html');
-                            
-                            // Extract the style element (contains exercise-specific CSS)
-                            const styleEl = doc.querySelector('style');
-                            let injectedStyle = null;
-                            if (styleEl) {
-                                injectedStyle = document.createElement('style');
-                                injectedStyle.textContent = styleEl.textContent;
-                                document.head.appendChild(injectedStyle);
-                            }
+                    const type01HTML = buildType01HTML();
+                    const type02HTML = buildType02HTML();
 
-                            // Extract the main container contents (exercises)
-                            const mainContainer = doc.querySelector('.HGH-History-main-container');
-                            if (mainContainer) {
-                                // Create a container to hold exercises for printing
-                                const insertedDiv = document.createElement('div');
-                                insertedDiv.id = 'inserted-exercises-container';
-                                insertedDiv.classList.add('HGH-History-section-card');
-                                // Copy inner HTML (exercise items)
-                                insertedDiv.innerHTML = mainContainer.innerHTML;
-                                // Remove any download button from inserted content
-                                const downloadBtns = insertedDiv.querySelectorAll('.HGH-History-download-wrapper');
-                                downloadBtns.forEach(btn => btn.remove());
-                                // Append to body or a specific place; we'll append to body before print
-                                document.body.appendChild(insertedDiv);
-                            }
-
-                            // Call print
-                            window.print();
-
-                            // Cleanup after print
-                            window.addEventListener('afterprint', function cleanup() {
-                                document.body.classList.remove('no-definitions', 'no-images');
-                                const inserted = document.getElementById('inserted-exercises-container');
-                                if (inserted) inserted.remove();
-                                if (injectedStyle) injectedStyle.remove();
-                                window.removeEventListener('afterprint', cleanup);
-                            });
-
-                            // Safety timeout in case afterprint doesn't fire
-                            setTimeout(() => {
-                                document.body.classList.remove('no-definitions', 'no-images');
-                                const inserted = document.getElementById('inserted-exercises-container');
-                                if (inserted) inserted.remove();
-                                if (injectedStyle) injectedStyle.remove();
-                            }, 5000);
-                        })
-                        .catch(err => {
-                            console.error('Failed to fetch exercises:', err);
-                            // If fetch fails, just print without exercises
-                            window.print();
-                            window.addEventListener('afterprint', function cleanup() {
-                                document.body.classList.remove('no-definitions', 'no-images');
-                                window.removeEventListener('afterprint', cleanup);
-                            });
-                            setTimeout(() => document.body.classList.remove('no-definitions', 'no-images'), 5000);
-                        });
-                } else {
-                    // Print without exercises
-                    window.print();
-                    window.addEventListener('afterprint', function cleanup() {
-                        document.body.classList.remove('no-definitions', 'no-images');
-                        window.removeEventListener('afterprint', cleanup);
-                    });
-                    setTimeout(() => document.body.classList.remove('no-definitions', 'no-images'), 5000);
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = type01HTML + type02HTML;
+                    const type01El = tempDiv.querySelector('#print-type01');
+                    const type02El = tempDiv.querySelector('#print-type02');
+                    if (type01El) document.body.appendChild(type01El);
+                    if (type02El) document.body.appendChild(type02El);
                 }
+
+                // Print
+                window.print();
+
+                // Cleanup after print
+                window.addEventListener('afterprint', function cleanup() {
+                    document.body.classList.remove('no-definitions', 'no-images');
+                    const el01 = document.getElementById('print-type01');
+                    const el02 = document.getElementById('print-type02');
+                    if (el01) el01.remove();
+                    if (el02) el02.remove();
+                    window.removeEventListener('afterprint', cleanup);
+                });
+
+                // Safety timeout
+                setTimeout(() => {
+                    document.body.classList.remove('no-definitions', 'no-images');
+                    const el01 = document.getElementById('print-type01');
+                    const el02 = document.getElementById('print-type02');
+                    if (el01) el01.remove();
+                    if (el02) el02.remove();
+                }, 5000);
             });
         })();
     </script>
