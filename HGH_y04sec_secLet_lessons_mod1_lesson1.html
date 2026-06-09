@@ -1341,7 +1341,7 @@
             initialize();
         })();
 
-        // PDF Modal – Build static exercises and print
+        // PDF Modal – Build exercises, wait for images to load, then print
         (function() {
             const modalOverlay = document.getElementById('pdfModalOverlay');
             const openBtn = document.getElementById('openPdfModalBtn');
@@ -1352,7 +1352,6 @@
             const chkImages = document.getElementById('chkImages');
             const chkExercises = document.getElementById('chkExercises');
 
-            // Exercise data – same as in exercises page
             const exerciseType01Data = {
                 title: '📝 عرّف المصطلحات التالية',
                 exercises: [
@@ -1379,7 +1378,6 @@
                 answerCaption: 'الخريطة المكتملة – نموذج الإجابة',
             };
 
-            // Build static HTML for type01 exercises
             function buildType01HTML() {
                 let html = '<div class="HGH-History-section-card" id="print-type01">';
                 html += '<h2 class="HGH-History-exercise-section-title">' + exerciseType01Data.title + '</h2>';
@@ -1395,7 +1393,6 @@
                 return html;
             }
 
-            // Build static HTML for type02 (map) exercises
             function buildType02HTML() {
                 let html = '<div class="HGH-History-section-card" id="print-type02">';
                 html += '<h2 class="HGH-History-exercise-section-title">' + exerciseType02Data.title + '</h2>';
@@ -1416,6 +1413,33 @@
                 return html;
             }
 
+            function waitForImages(container) {
+                return new Promise(resolve => {
+                    const images = container.querySelectorAll('img');
+                    if (images.length === 0) {
+                        resolve();
+                        return;
+                    }
+                    let loaded = 0;
+                    const checkAllLoaded = () => {
+                        loaded++;
+                        if (loaded >= images.length) {
+                            resolve();
+                        }
+                    };
+                    images.forEach(img => {
+                        if (img.complete) {
+                            checkAllLoaded();
+                        } else {
+                            img.addEventListener('load', checkAllLoaded, { once: true });
+                            img.addEventListener('error', checkAllLoaded, { once: true });
+                        }
+                    });
+                    // Safety timeout after 3 seconds
+                    setTimeout(resolve, 3000);
+                });
+            }
+
             openBtn.addEventListener('click', () => modalOverlay.classList.add('active'));
             function closeModal() { modalOverlay.classList.remove('active'); }
             closeBtn.addEventListener('click', closeModal);
@@ -1433,45 +1457,55 @@
                 }
                 closeModal();
 
-                // Remove any previously inserted containers
+                // Remove previous
                 const oldType01 = document.getElementById('print-type01');
                 const oldType02 = document.getElementById('print-type02');
                 if (oldType01) oldType01.remove();
                 if (oldType02) oldType02.remove();
+
+                const insertionPromises = [];
 
                 if (chkExercises.checked) {
                     const type01HTML = buildType01HTML();
                     const type02HTML = buildType02HTML();
 
                     const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = type01HTML + type02HTML;
+                    tempDiv.innerHTML = type01HTML;
                     const type01El = tempDiv.querySelector('#print-type01');
+                    if (type01El) {
+                        document.body.appendChild(type01El);
+                        // Definitions don't have images, so no wait needed, but still we may wait for 0 images.
+                        insertionPromises.push(waitForImages(type01El));
+                    }
+
+                    tempDiv.innerHTML = type02HTML;
                     const type02El = tempDiv.querySelector('#print-type02');
-                    if (type01El) document.body.appendChild(type01El);
-                    if (type02El) document.body.appendChild(type02El);
+                    if (type02El) {
+                        document.body.appendChild(type02El);
+                        insertionPromises.push(waitForImages(type02El));
+                    }
                 }
 
-                // Print
-                window.print();
+                Promise.all(insertionPromises).then(() => {
+                    window.print();
 
-                // Cleanup after print
-                window.addEventListener('afterprint', function cleanup() {
-                    document.body.classList.remove('no-definitions', 'no-images');
-                    const el01 = document.getElementById('print-type01');
-                    const el02 = document.getElementById('print-type02');
-                    if (el01) el01.remove();
-                    if (el02) el02.remove();
-                    window.removeEventListener('afterprint', cleanup);
+                    window.addEventListener('afterprint', function cleanup() {
+                        document.body.classList.remove('no-definitions', 'no-images');
+                        const el01 = document.getElementById('print-type01');
+                        const el02 = document.getElementById('print-type02');
+                        if (el01) el01.remove();
+                        if (el02) el02.remove();
+                        window.removeEventListener('afterprint', cleanup);
+                    });
+
+                    setTimeout(() => {
+                        document.body.classList.remove('no-definitions', 'no-images');
+                        const el01 = document.getElementById('print-type01');
+                        const el02 = document.getElementById('print-type02');
+                        if (el01) el01.remove();
+                        if (el02) el02.remove();
+                    }, 5000);
                 });
-
-                // Safety timeout
-                setTimeout(() => {
-                    document.body.classList.remove('no-definitions', 'no-images');
-                    const el01 = document.getElementById('print-type01');
-                    const el02 = document.getElementById('print-type02');
-                    if (el01) el01.remove();
-                    if (el02) el02.remove();
-                }, 5000);
             });
         })();
     </script>
