@@ -626,36 +626,6 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.13);
         }
 
-        /* Print-only iframe container */
-        @media screen {
-            .HGH-History-print-exercise-container {
-                position: absolute;
-                visibility: hidden;
-                width: 0;
-                height: 0;
-                overflow: hidden;
-            }
-            .HGH-History-print-exercise-container iframe {
-                width: 100%;
-                height: 400px;
-            }
-        }
-        @media print {
-            .HGH-History-print-exercise-container {
-                display: block !important;
-                visibility: visible !important;
-                position: static !important;
-                width: 100% !important;
-                height: auto !important;
-                overflow: visible !important;
-                margin-top: 30px;
-                page-break-before: always;
-            }
-            .HGH-History-print-exercise-container iframe {
-                border: 1px solid #ccc;
-            }
-        }
-
         /* PDF MODAL */
         .HGH-History-pdf-modal-overlay {
             position: fixed;
@@ -916,6 +886,27 @@
             body.HGH-History-ltr .HGH-History-site-header { flex-direction: row-reverse !important; }
             body.HGH-History-ltr .HGH-History-site-footer { flex-direction: row-reverse !important; }
             body.HGH-History-ltr .HGH-History-header-center { flex-direction: row !important; }
+
+            /* Hide exercise interactive buttons in print */
+            .HGH-History-exercise-show-btn { display: none !important; }
+            /* Always show answer wrappers in print */
+            .HGH-History-exercise-answer-wrapper {
+                max-height: none !important;
+                opacity: 1 !important;
+                overflow: visible !important;
+            }
+            .HGH-History-exercise-answer-content {
+                border: 1px solid #ccc !important;
+                background: #fafafa !important;
+            }
+            .HGH-History-exercise-item {
+                page-break-inside: avoid;
+            }
+
+            /* Inserted exercises container */
+            #inserted-exercises-container {
+                page-break-before: always;
+            }
         }
     </style>
 </head>
@@ -1130,11 +1121,6 @@
                 📥 تحميل PDF
             </button>
         </div>
-    </div>
-
-    <!-- ═══════════ PRINT-ONLY IFRAME FOR EXERCISES ═══════════ -->
-    <div id="printExerciseContainer" class="HGH-History-print-exercise-container">
-        <iframe id="printExerciseIframe" src="" title="تمارين"></iframe>
     </div>
 
     <!-- ═══════════════ FOOTER ═══════════════ -->
@@ -1358,7 +1344,7 @@
             initialize();
         })();
 
-        // PDF Modal with exercise printing support
+        // PDF Modal – Fetch exercises content and inject into page for printing
         (function() {
             const modalOverlay = document.getElementById('pdfModalOverlay');
             const openBtn = document.getElementById('openPdfModalBtn');
@@ -1368,7 +1354,6 @@
             const chkDefinitions = document.getElementById('chkDefinitions');
             const chkImages = document.getElementById('chkImages');
             const chkExercises = document.getElementById('chkExercises');
-            const printIframe = document.getElementById('printExerciseIframe');
             const EXERCISE_FILE = 'HGH_y04sec_secLet_exercices_mod1_lesson1.html';
 
             openBtn.addEventListener('click', () => modalOverlay.classList.add('active'));
@@ -1390,34 +1375,69 @@
                 closeModal();
 
                 if (chkExercises.checked) {
-                    // Show the hidden container (it will only be visible in print,
-                    // but we need to load the iframe now)
-                    const container = document.getElementById('printExerciseContainer');
-                    // Make it visible on screen briefly so the iframe loads
-                    container.style.visibility = 'visible';
-                    container.style.position = 'absolute';
-                    container.style.width = '800px';
-                    container.style.height = '600px';
-                    container.style.left = '-9999px';
-                    container.style.top = '0';
+                    // Fetch exercises HTML and inject
+                    fetch(EXERCISE_FILE)
+                        .then(response => response.text())
+                        .then(htmlText => {
+                            // Create a temporary DOM to parse the fetched HTML
+                            const parser = new DOMParser();
+                            const doc = parser.parseFromString(htmlText, 'text/html');
+                            
+                            // Extract the style element (contains exercise-specific CSS)
+                            const styleEl = doc.querySelector('style');
+                            let injectedStyle = null;
+                            if (styleEl) {
+                                injectedStyle = document.createElement('style');
+                                injectedStyle.textContent = styleEl.textContent;
+                                document.head.appendChild(injectedStyle);
+                            }
 
-                    printIframe.src = EXERCISE_FILE;
-                    printIframe.onload = function() {
-                        // Now print
-                        window.print();
-                        // Clean up after print
-                        window.addEventListener('afterprint', function cleanup() {
-                            document.body.classList.remove('no-definitions', 'no-images');
-                            printIframe.src = '';
-                            container.style.visibility = 'hidden';
-                            container.style.position = '';
-                            container.style.width = '';
-                            container.style.height = '';
-                            container.style.left = '';
-                            container.style.top = '';
-                            window.removeEventListener('afterprint', cleanup);
+                            // Extract the main container contents (exercises)
+                            const mainContainer = doc.querySelector('.HGH-History-main-container');
+                            if (mainContainer) {
+                                // Create a container to hold exercises for printing
+                                const insertedDiv = document.createElement('div');
+                                insertedDiv.id = 'inserted-exercises-container';
+                                insertedDiv.classList.add('HGH-History-section-card');
+                                // Copy inner HTML (exercise items)
+                                insertedDiv.innerHTML = mainContainer.innerHTML;
+                                // Remove any download button from inserted content
+                                const downloadBtns = insertedDiv.querySelectorAll('.HGH-History-download-wrapper');
+                                downloadBtns.forEach(btn => btn.remove());
+                                // Append to body or a specific place; we'll append to body before print
+                                document.body.appendChild(insertedDiv);
+                            }
+
+                            // Call print
+                            window.print();
+
+                            // Cleanup after print
+                            window.addEventListener('afterprint', function cleanup() {
+                                document.body.classList.remove('no-definitions', 'no-images');
+                                const inserted = document.getElementById('inserted-exercises-container');
+                                if (inserted) inserted.remove();
+                                if (injectedStyle) injectedStyle.remove();
+                                window.removeEventListener('afterprint', cleanup);
+                            });
+
+                            // Safety timeout in case afterprint doesn't fire
+                            setTimeout(() => {
+                                document.body.classList.remove('no-definitions', 'no-images');
+                                const inserted = document.getElementById('inserted-exercises-container');
+                                if (inserted) inserted.remove();
+                                if (injectedStyle) injectedStyle.remove();
+                            }, 5000);
+                        })
+                        .catch(err => {
+                            console.error('Failed to fetch exercises:', err);
+                            // If fetch fails, just print without exercises
+                            window.print();
+                            window.addEventListener('afterprint', function cleanup() {
+                                document.body.classList.remove('no-definitions', 'no-images');
+                                window.removeEventListener('afterprint', cleanup);
+                            });
+                            setTimeout(() => document.body.classList.remove('no-definitions', 'no-images'), 5000);
                         });
-                    };
                 } else {
                     // Print without exercises
                     window.print();
@@ -1425,12 +1445,8 @@
                         document.body.classList.remove('no-definitions', 'no-images');
                         window.removeEventListener('afterprint', cleanup);
                     });
+                    setTimeout(() => document.body.classList.remove('no-definitions', 'no-images'), 5000);
                 }
-
-                // Safety timeout: remove body classes after 5s if afterprint not fired
-                setTimeout(() => {
-                    document.body.classList.remove('no-definitions', 'no-images');
-                }, 5000);
             });
         })();
     </script>
