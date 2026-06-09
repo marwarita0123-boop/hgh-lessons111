@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا - hgh-lessons111</title>
+    <link rel="icon" type="image/png" href="assets/icon-96x96.png">
+	<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#8b6914">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="assets/icon-96x96.png">
+    <style>
+        :root {
+            --HGH-History-bg-color: #fdfaf3;
+            --HGH-History-surface-color: #ffffff;
+            --HGH-History-text-color: #1a1a1a;
+            --HGH-History-text-secondary: #3a3a3a;
+            --HGH-History-heading-color: #1a1a1a;
+            --HGH-History-border-color: #e0d8c8;
+            --HGH-History-shadow-color: rgba(0,0,0,0.07);
+            --HGH-History-accent-color: #8b6914;
+            --HGH-History-accent-light: #f3e8cc;
+            --HGH-History-toggle-bg: #e8e0d0;
+            --HGH-History-toggle-icon: #5c4a1f;
+            --HGH-History-divider-color: #d4c8a8;
+            --HGH-History-transition-speed: 0.35s;
+            --HGH-History-card-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            --HGH-History-form-input-bg: #faf8f2;
+        }
+        [data-theme="dark"] {
+            --HGH-History-bg-color: #1a1a1f;
+            --HGH-History-surface-color: #23232a;
+            --HGH-History-text-color: #e0ddd5;
+            --HGH-History-text-secondary: #c4c0b5;
+            --HGH-History-heading-color: #f0ede4;
+            --HGH-History-border-color: #3a3830;
+            --HGH-History-shadow-color: rgba(0,0,0,0.3);
+            --HGH-History-accent-color: #d4a843;
+            --HGH-History-accent-light: #2e2a1f;
+            --HGH-History-toggle-bg: #3a3830;
+            --HGH-History-toggle-icon: #d4a843;
+            --HGH-History-divider-color: #3e3c34;
+            --HGH-History-card-shadow: 0 2px 16px rgba(0,0,0,0.35);
+            --HGH-History-form-input-bg: #2b2a25;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI','Amiri','Noto Naskh Arabic',Tahoma,sans-serif;
+            background-color: var(--HGH-History-bg-color);
+            color: var(--HGH-History-text-color);
+            line-height: 1.7;
+            transition: background-color var(--HGH-History-transition-speed) ease, color var(--HGH-History-transition-speed) ease;
+            min-height: 100vh;
+            direction: rtl;
+            display: flex;
+            flex-direction: column;
+        }
+        body.HGH-History-ltr { direction: ltr; }
+
+        .HGH-History-site-header {
+            background-color: var(--HGH-History-surface-color);
+            border-bottom: 2px solid var(--HGH-History-accent-color);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            box-shadow: 0 2px 8px var(--HGH-History-shadow-color);
+            transition: background-color var(--HGH-History-transition-speed) ease, border-color var(--HGH-History-transition-speed) ease;
+        }
+        body.HGH-History-ltr .HGH-History-site-header { flex-direction: row-reverse; }
+        .HGH-History-header-right,
+        .HGH-History-header-left {
+            min-width: 100px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .HGH-History-header-right .HGH-History-icon { font-size: 2rem; color: var(--HGH-History-accent-color); }
+        .HGH-History-header-center {
+            flex: 1;
+            text-align: center;
+        }
+        .HGH-History-header-center .HGH-History-line1 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--HGH-History-heading-color);
+        }
+        .HGH-History-header-center .HGH-History-line2 {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--HGH-History-text-secondary);
+        }
+        .HGH-History-lang-select {
+            padding: 6px 10px;
+            border: 1.5px solid var(--HGH-History-border-color);
+            border-radius: 8px;
+            background-color: var(--HGH-History-toggle-bg);
+            color: var(--HGH-History-text-color);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            min-width: 70px;
+        }
+        .HGH-History-lang-select:hover {
+            background-color: var(--HGH-History-accent-light);
+            border-color: var(--HGH-History-accent-color);
+            color: var(--HGH-History-accent-color);
+        }
+        .HGH-History-header-left button {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 7px 14px;
+            border: 1.5px solid var(--HGH-History-border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background-color: var(--HGH-History-toggle-bg);
+            color: var(--HGH-History-text-color);
+            white-space: nowrap;
+            font-family: inherit;
+        }
+        .HGH-History-header-left button:hover {
+            background-color: var(--HGH-History-accent-light);
+            border-color: var(--HGH-History-accent-color);
+            color: var(--HGH-History-accent-color);
+        }
+
+        .HGH-History-main-container {
+            flex: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2rem 20px 3rem;
+            width: 100%;
+        }
+        .HGH-History-contact-form {
+            background-color: var(--HGH-History-surface-color);
+            border: 1px solid var(--HGH-History-border-color);
+            border-radius: 14px;
+            padding: 2rem;
+            box-shadow: var(--HGH-History-card-shadow);
+            transition: background-color var(--HGH-History-transition-speed) ease, border-color var(--HGH-History-transition-speed) ease;
+        }
+        .HGH-History-contact-form h2 {
+            font-size: 1.6rem;
+            color: var(--HGH-History-heading-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .HGH-History-form-group {
+            margin-bottom: 1.2rem;
+        }
+        .HGH-History-form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--HGH-History-text-color);
+        }
+        .HGH-History-form-group input,
+        .HGH-History-form-group textarea {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 1.5px solid var(--HGH-History-border-color);
+            border-radius: 8px;
+            background-color: var(--HGH-History-form-input-bg);
+            color: var(--HGH-History-text-color);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.2s, background-color var(--HGH-History-transition-speed) ease;
+            resize: vertical;
+        }
+        .HGH-History-form-group input:focus,
+        .HGH-History-form-group textarea:focus {
+            outline: none;
+            border-color: var(--HGH-History-accent-color);
+        }
+        .HGH-History-submit-btn {
+            background-color: var(--HGH-History-accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background-color 0.2s;
+            width: 100%;
+        }
+        .HGH-History-submit-btn:hover {
+            background-color: #7a5c12;
+        }
+        [data-theme="dark"] .HGH-History-submit-btn {
+            color: #1a1a1f;
+        }
+        .HGH-History-back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--HGH-History-accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .HGH-History-back-link:hover {
+            text-decoration: underline;
+        }
+
+        .HGH-History-site-footer {
+            background-color: var(--HGH-History-surface-color);
+            border-top: 2px solid var(--HGH-History-border-color);
+            padding: 14px 24px;
+            display: flex;
+            font-size: 0.85rem;
+            color: var(--HGH-History-text-secondary);
+            box-shadow: 0 -2px 8px var(--HGH-History-shadow-color);
+            transition: background-color var(--HGH-History-transition-speed) ease, border-color var(--HGH-History-transition-speed) ease;
+        }
+        body.HGH-History-ltr .HGH-History-site-footer { flex-direction: row-reverse; }
+        .HGH-History-footer-item {
+            flex: 1;
+            text-align: center;
+        }
+        .HGH-History-footer-item:first-child { text-align: right; }
+        .HGH-History-footer-item:last-child { text-align: left; }
+        body.HGH-History-ltr .HGH-History-footer-item:first-child { text-align: right; }
+        body.HGH-History-ltr .HGH-History-footer-item:last-child { text-align: left; }
+
+        @media (max-width: 768px) {
+            .HGH-History-site-header {
+                padding: 10px 14px;
+                flex-wrap: wrap;
+            }
+            .HGH-History-header-right,
+            .HGH-History-header-left {
+                min-width: auto;
+                flex-shrink: 1;
+                gap: 6px;
+            }
+            .HGH-History-contact-form { padding: 1.5rem 1rem; }
+            .HGH-History-site-footer { flex-wrap: wrap; padding: 10px 14px; font-size: 0.75rem; }
+            .HGH-History-footer-item { width: 100%; text-align: center !important; margin: 2px 0; }
+        }
+    </style>
+</head>
+<body>
+    <header class="HGH-History-site-header">
+        <div class="HGH-History-header-right">
+            <span class="HGH-History-icon">🌍</span>
+        </div>
+        <div class="HGH-History-header-center">
+            <div class="HGH-History-line1" data-i18n="header-line1">دروس تاريخ</div>
+            <div class="HGH-History-line2" data-i18n="header-line2">باكالوريا آداب واقتصاد</div>
+        </div>
+        <div class="HGH-History-header-left">
+            <button id="themeToggle" data-i18n-title="theme-toggle-title" data-i18n-aria="theme-toggle-aria" title="تبديل الوضع الليلي / النهاري" aria-label="تبديل السمة">
+                <span class="HGH-History-icon">🌓</span> <span data-i18n="theme-toggle-text">السمة</span>
+            </button>
+            <select id="languageSelect" class="HGH-History-lang-select" data-i18n-aria="lang-select-aria" aria-label="اختيار اللغة">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="HGH-History-main-container">
+        <div class="HGH-History-contact-form">
+            <h2 data-i18n="contact-title">اتصل بنا</h2>
+            <div class="HGH-History-form-group">
+                <label for="name" data-i18n="label-name">الاسم</label>
+                <input type="text" id="name" name="name" placeholder="أدخل اسمك" data-i18n-placeholder="placeholder-name">
+            </div>
+            <div class="HGH-History-form-group">
+                <label for="email" data-i18n="label-email">البريد الإلكتروني</label>
+                <input type="email" id="email" name="email" placeholder="example@mail.com" data-i18n-placeholder="placeholder-email">
+            </div>
+            <div class="HGH-History-form-group">
+                <label for="message" data-i18n="label-message">الرسالة</label>
+                <textarea id="message" name="message" rows="5" placeholder="اكتب رسالتك هنا..." data-i18n-placeholder="placeholder-message"></textarea>
+            </div>
+            <button class="HGH-History-submit-btn" data-i18n="submit-btn">إرسال</button>
+        </div>
+        <a href="index.html" class="HGH-History-back-link" data-i18n="back-link">← العودة إلى الدروس</a>
+    </div>
+
+    <footer class="HGH-History-site-footer">
+        <div class="HGH-History-footer-item" data-i18n="footer-version">النسخة 0.0.1</div>
+        <div class="HGH-History-footer-item" data-i18n="footer-visit">قم بزيارتنا</div>
+        <div class="HGH-History-footer-item" data-i18n="footer-developer">المطور: زياد الماجري</div>
+    </footer>
+
+    <script>
+        (function() {
+            const translations = {
+                ar: {
+                    'header-line1': 'دروس تاريخ',
+                    'header-line2': 'باكالوريا آداب واقتصاد',
+                    'theme-toggle-text': 'السمة',
+                    'theme-toggle-title': 'تبديل الوضع الليلي / النهاري',
+                    'theme-toggle-aria': 'تبديل السمة',
+                    'lang-select-aria': 'اختيار اللغة',
+                    'contact-title': 'اتصل بنا',
+                    'label-name': 'الاسم',
+                    'label-email': 'البريد الإلكتروني',
+                    'label-message': 'الرسالة',
+                    'submit-btn': 'إرسال',
+                    'back-link': '← العودة إلى الدروس',
+                    'placeholder-name': 'أدخل اسمك',
+                    'placeholder-email': 'example@mail.com',
+                    'placeholder-message': 'اكتب رسالتك هنا...',
+                    'footer-version': 'النسخة 0.0.1',
+                    'footer-visit': 'قم بزيارتنا',
+                    'footer-developer': 'المطور: زياد الماجري'
+                },
+                en: {
+                    'header-line1': 'History Lessons',
+                    'header-line2': 'Baccalaureate Arts & Economics',
+                    'theme-toggle-text': 'Theme',
+                    'theme-toggle-title': 'Toggle dark / light mode',
+                    'theme-toggle-aria': 'Toggle theme',
+                    'lang-select-aria': 'Select language',
+                    'contact-title': 'Contact Us',
+                    'label-name': 'Name',
+                    'label-email': 'Email',
+                    'label-message': 'Message',
+                    'submit-btn': 'Send',
+                    'back-link': '← Back to lessons',
+                    'placeholder-name': 'Enter your name',
+                    'placeholder-email': 'example@mail.com',
+                    'placeholder-message': 'Write your message here...',
+                    'footer-version': 'Version 0.0.1',
+                    'footer-visit': 'Visit Us',
+                    'footer-developer': 'Developer: Zied Majeri'
+                },
+                fr: {
+                    'header-line1': 'Leçons d\'Histoire',
+                    'header-line2': 'Baccalauréat Lettres & Économie',
+                    'theme-toggle-text': 'Thème',
+                    'theme-toggle-title': 'Basculer mode sombre / clair',
+                    'theme-toggle-aria': 'Changer le thème',
+                    'lang-select-aria': 'Choisir la langue',
+                    'contact-title': 'Contactez-nous',
+                    'label-name': 'Nom',
+                    'label-email': 'E-mail',
+                    'label-message': 'Message',
+                    'submit-btn': 'Envoyer',
+                    'back-link': '← Retour aux leçons',
+                    'placeholder-name': 'Entrez votre nom',
+                    'placeholder-email': 'exemple@mail.com',
+                    'placeholder-message': 'Écrivez votre message ici...',
+                    'footer-version': 'Version 0.0.1',
+                    'footer-visit': 'Visitez-nous',
+                    'footer-developer': 'Développeur : Zied Majeri'
+                }
+            };
+            const html = document.documentElement;
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+            const languageSelect = document.getElementById('languageSelect');
+            const STORAGE_THEME_KEY = 'ww1-contact-theme';
+            const STORAGE_DIR_KEY = 'ww1-contact-dir';
+            const STORAGE_LANG_KEY = 'ww1-contact-lang';
+
+            function getStored(key) { try { return localStorage.getItem(key); } catch(e) { return null; } }
+            function setStored(key, val) { try { localStorage.setItem(key, val); } catch(e) {} }
+
+            function applyTheme(theme) {
+                if (theme === 'dark') html.setAttribute('data-theme', 'dark');
+                else html.removeAttribute('data-theme');
+            }
+            function applyDir(dir) {
+                if (dir === 'ltr') { body.classList.add('HGH-History-ltr'); html.setAttribute('dir','ltr'); }
+                else { body.classList.remove('HGH-History-ltr'); html.setAttribute('dir','rtl'); }
+            }
+            function translatePage(lang) {
+                if (!translations[lang]) lang = 'ar';
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (translations[lang][key]) el.textContent = translations[lang][key];
+                });
+                document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-title');
+                    if (translations[lang][key]) el.setAttribute('title', translations[lang][key]);
+                });
+                document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-aria');
+                    if (translations[lang][key]) el.setAttribute('aria-label', translations[lang][key]);
+                });
+                document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-placeholder');
+                    if (translations[lang][key]) el.setAttribute('placeholder', translations[lang][key]);
+                });
+                html.setAttribute('lang', lang);
+                if (lang === 'ar') { applyDir('rtl'); setStored(STORAGE_DIR_KEY, 'rtl'); }
+                else { applyDir('ltr'); setStored(STORAGE_DIR_KEY, 'ltr'); }
+                if (languageSelect && languageSelect.value !== lang) languageSelect.value = lang;
+                setStored(STORAGE_LANG_KEY, lang);
+            }
+
+            function initialize() {
+                const savedTheme = getStored(STORAGE_THEME_KEY);
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+                const savedDir = getStored(STORAGE_DIR_KEY);
+                if (savedDir) applyDir(savedDir);
+                const savedLang = getStored(STORAGE_LANG_KEY);
+                const initialLang = savedLang || 'ar';
+                if (languageSelect) languageSelect.value = initialLang;
+                translatePage(initialLang);
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = (currentTheme === 'dark') ? 'light' : 'dark';
+                applyTheme(newTheme);
+                setStored(STORAGE_THEME_KEY, newTheme);
+            });
+            languageSelect.addEventListener('change', () => translatePage(languageSelect.value));
+
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                if (!getStored(STORAGE_THEME_KEY)) applyTheme(e.matches ? 'dark' : 'light');
+            });
+            initialize();
+        })();
+    </script>
+</body>
+</html>

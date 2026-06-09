@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تمارين – الحرب العالمية الأولى: الأسباب والنتائج</title>
+    <link rel="icon" type="image/png" href="assets/icon-96x96.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#8b6914">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="assets/icon-96x96.png">
+    <style>
+        :root {
+            --HGH-History-bg-color: #fdfaf3;
+            --HGH-History-surface-color: #ffffff;
+            --HGH-History-text-color: #1a1a1a;
+            --HGH-History-text-secondary: #3a3a3a;
+            --HGH-History-heading-color: #1a1a1a;
+            --HGH-History-border-color: #e0d8c8;
+            --HGH-History-shadow-color: rgba(0, 0, 0, 0.07);
+            --HGH-History-accent-color: #8b6914;
+            --HGH-History-accent-light: #f3e8cc;
+            --HGH-History-bullet-color: #8b6914;
+            --HGH-History-toggle-bg: #e8e0d0;
+            --HGH-History-toggle-icon: #5c4a1f;
+            --HGH-History-code-bg: #f9f5ec;
+            --HGH-History-divider-color: #d4c8a8;
+            --HGH-History-highlight-bg: #fef9ef;
+            --HGH-History-card-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            --HGH-History-num-roman-color: #6b3a2a;
+            --HGH-History-num-numeric-color: #4a6741;
+            --HGH-History-num-alpha-color: #5c3d6e;
+            --HGH-History-bullet-marker-color: #8b6914;
+            --HGH-History-transition-speed: 0.35s;
+            --HGH-History-country-color: #b5452c;
+            --HGH-History-country-bg: #ffeae5;
+            --HGH-History-personality-color: #1e6b4b;
+            --HGH-History-personality-bg: #e3f5ec;
+            --HGH-History-treaty-color: #5f4b6e;
+            --HGH-History-treaty-bg: #f1ebf5;
+            --HGH-History-event-color: #8b6820;
+            --HGH-History-event-bg: #fff6e5;
+
+            /* exercise-specific */
+            --HGH-History-exercise-answer-bg: #f9f6ed;
+            --HGH-History-exercise-btn-bg: #f0e8d0;
+            --HGH-History-exercise-btn-hover-bg: #e4d8b8;
+            --HGH-History-exercise-answer-border: #d4c8a8;
+        }
+        [data-theme="dark"] {
+            --HGH-History-bg-color: #1a1a1f;
+            --HGH-History-surface-color: #23232a;
+            --HGH-History-text-color: #e0ddd5;
+            --HGH-History-text-secondary: #c4c0b5;
+            --HGH-History-heading-color: #f0ede4;
+            --HGH-History-border-color: #3a3830;
+            --HGH-History-shadow-color: rgba(0, 0, 0, 0.3);
+            --HGH-History-accent-color: #d4a843;
+            --HGH-History-accent-light: #2e2a1f;
+            --HGH-History-bullet-color: #d4a843;
+            --HGH-History-toggle-bg: #3a3830;
+            --HGH-History-toggle-icon: #d4a843;
+            --HGH-History-code-bg: #28282e;
+            --HGH-History-divider-color: #3e3c34;
+            --HGH-History-highlight-bg: #282820;
+            --HGH-History-card-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+            --HGH-History-num-roman-color: #d4947a;
+            --HGH-History-num-numeric-color: #8db87f;
+            --HGH-History-num-alpha-color: #b892d4;
+            --HGH-History-bullet-marker-color: #d4a843;
+            --HGH-History-country-color: #e07b64;
+            --HGH-History-country-bg: #3d2622;
+            --HGH-History-personality-color: #72c9a1;
+            --HGH-History-personality-bg: #1d352a;
+            --HGH-History-treaty-color: #b498c4;
+            --HGH-History-treaty-bg: #2a2330;
+            --HGH-History-event-color: #d4a843;
+            --HGH-History-event-bg: #302818;
+
+            --HGH-History-exercise-answer-bg: #2a2922;
+            --HGH-History-exercise-btn-bg: #3a3830;
+            --HGH-History-exercise-btn-hover-bg: #4a4840;
+            --HGH-History-exercise-answer-border: #4a4840;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', 'Amiri', 'Noto Naskh Arabic', 'Tahoma', 'Arial', sans-serif;
+            background-color: var(--HGH-History-bg-color);
+            color: var(--HGH-History-text-color);
+            line-height: 1.85;
+            transition: background-color var(--HGH-History-transition-speed) ease, color var(--HGH-History-transition-speed) ease;
+            min-height: 100vh;
+            direction: rtl;
+            display: flex;
+            flex-direction: column;
+        }
+        body.HGH-History-ltr {
+            direction: ltr;
+        }
+        .HGH-History-site-header {
+            background-color: var(--HGH-History-surface-color);
+            border-bottom: 2px solid var(--HGH-History-accent-color);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            gap: 0;
+            box-shadow: 0 2px 8px var(--HGH-History-shadow-color);
+            transition: background-color var(--HGH-History-transition-speed) ease, border-color var(--HGH-History-transition-speed) ease;
+            position: relative;
+        }
+        body.HGH-History-ltr .HGH-History-site-header {
+            flex-direction: row-reverse;
+        }
+        .HGH-History-header-right,
+        .HGH-History-header-left {
+            min-width: 100px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .HGH-History-header-right .HGH-History-icon {
+            font-size: 2rem;
+            color: var(--HGH-History-accent-color);
+            flex-shrink: 0;
+        }
+        .HGH-History-header-center {
+            flex: 1;
+            text-align: center;
+            min-width: 0;
+        }
+        .HGH-History-header-center .HGH-History-line1 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--HGH-History-heading-color);
+            line-height: 1.4;
+            transition: color var(--HGH-History-transition-speed) ease;
+        }
+        .HGH-History-header-center .HGH-History-line2 {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--HGH-History-text-secondary);
+            line-height: 1.4;
+            transition: color var(--HGH-History-transition-speed) ease;
+        }
+        .HGH-History-lang-select {
+            padding: 6px 10px;
+            border: 1.5px solid var(--HGH-History-border-color);
+            border-radius: 8px;
+            background-color: var(--HGH-History-toggle-bg);
+            color: var(--HGH-History-text-color);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.25s ease;
+            min-width: 70px;
+            appearance: auto;
+            -webkit-appearance: auto;
+            -moz-appearance: auto;
+        }
+        .HGH-History-lang-select:hover {
+            background-color: var(--HGH-History-accent-light);
+            border-color: var(--HGH-History-accent-color);
+            color: var(--HGH-History-accent-color);
+        }
+        .HGH-History-lang-select:focus-visible {
+            outline: 2px solid var(--HGH-History-accent-color);
+            outline-offset: 2px;
+        }
+        .HGH-History-header-left button {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 7px 14px;
+            border: 1.5px solid var(--HGH-History-border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background-color: var(--HGH-History-toggle-bg);
+            color: var(--HGH-History-text-color);
+            transition: all 0.25s ease;
+            white-space: nowrap;
+            font-family: inherit;
+        }
+        .HGH-History-header-left button:hover {
+            background-color: var(--HGH-History-accent-light);
+            border-color: var(--HGH-History-accent-color);
+            color: var(--HGH-History-accent-color);
+        }
+        .HGH-History-header-left button .HGH-History-icon {
+            font-size: 1rem;
+        }
+        .HGH-History-main-container {
+            flex: 1;
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 28px 20px 40px;
+            transition: padding var(--HGH-History-transition-speed) ease;
+        }
+        .HGH-History-lesson-heading {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .HGH-History-lesson-title {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--HGH-History-heading-color);
+            line-height: 1.4;
+            transition: color var(--HGH-History-transition-speed) ease;
+        }
+        .HGH-History-lesson-subtitle {
+            font-size: 1rem;
+            color: var(--HGH-History-text-secondary);
+            font-weight: 500;
+            margin-top: 4px;
+            transition: color var(--HGH-History-transition-speed) ease;
+        }
+        .HGH-History-section-card {
+            background-color: var(--HGH-History-surface-color);
+            border: 1px solid var(--HGH-History-border-color);
+            border-radius: 12px;
+            padding: 22px 26px;
+            margin-bottom: 22px;
+            box-shadow: var(--HGH-History-card-shadow);
+            transition: background-color var(--HGH-History-transition-speed) ease, border-color var(--HGH-History-transition-speed) ease, box-shadow var(--HGH-History-transition-speed) ease;
+        }
+        .HGH-History-section-divider {
+            border: none;
+            border-top: 2px dashed var(--HGH-History-divider-color);
+            margin: 18px 0;
+            opacity: 0.7;
+            transition: border-color var(--HGH-History-transition-speed) ease;
+        }
+        .HGH-History-download-wrapper {
+            text-align: center;
+            margin: 0 0 20px 0;
+        }
+        .HGH-History-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background-color: var(--HGH-History-accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 14px var(--HGH-History-shadow-color);
+        }
+        .HGH-History-download-btn:hover {
+            background-color: #7a5c12;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.13);
+        }
+        [data-theme="dark"] .HGH-History-download-btn {
+            color: #1a1a1f;
+        }
+        [data-theme="dark"] .HGH-History-download-btn:hover {
+            background-color: #c09430;
+        }
+
+        /* ═══════════ EXERCISE STYLES ═══════════ */
+        .HGH-History-exercise-section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--HGH-History-num-roman-color);
+            margin-bottom: 18px;
+            text-align: center;
+            transition: color var(--HGH-History-transition-speed) ease;
+        }
+        .HGH-History-exercise-item {
+            background-color: var(--HGH-History-highlight-bg);
+            border: 1px solid var(--HGH-History-border-color);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 14px;
+            transition: background-color var(--HGH-History-transition-speed) ease, border-color var(--HGH-History-transition-speed) ease;
+        }
+        .HGH-History-exercise-term {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--HGH-History-heading-color);
+            margin-bottom: 6px;
+            transition: color var(--HGH-History-transition-speed) ease;
+        }
+        .HGH-History-exercise-term .HGH-History-exercise-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background-color: var(--HGH-History-accent-color);
+            color: #fff;
+            border-radius: 50%;
+            font-size: 0.85rem;
+            font-weight: 800;
+            margin-left: 8px;
+            margin-right: 0;
+            flex-shrink: 0;
+        }
+        body.HGH-History-ltr .HGH-History-exercise-term .HGH-History-exercise-number {
+            margin-left: 0;
+            margin-right: 8px;
+        }
+        [data-theme="dark"] .HGH-History-exercise-term .HGH-History-exercise-number {
+            color: #1a1a1f;
+        }
+        .HGH-History-exercise-answer-wrapper {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s ease, padding 0.45s ease, margin 0.45s ease, opacity 0.35s ease;
+            opacity: 0;
+            margin-top: 0;
+        }
+        .HGH-History-exercise-answer-wrapper.revealed {
+            max-height: 600px;
+            opacity: 1;
+            margin-top: 10px;
+        }
+        .HGH-History-exercise-answer-content {
+            background-color: var(--HGH-History-exercise-answer-bg);
+            border: 1.5px dashed var(--HGH-History-exercise-answer-border);
+            border-radius: 8px;
+            padding: 14px 18px;
+            font-size: 0.93rem;
+            color: var(--HGH-History-text-secondary);
+            line-height: 1.7;
+            transition: background-color var(--HGH-History-transition-speed) ease, border-color var(--HGH-History-transition-speed) ease, color var(--HGH-History-transition-speed) ease;
+        }
+        .HGH-History-exercise-answer-content strong {
+            color: var(--HGH-History-accent-color);
+            font-weight: 700;
+        }
+        .HGH-History-exercise-show-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            border: 1.5px solid var(--HGH-History-accent-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 600;
+            background-color: var(--HGH-History-exercise-btn-bg);
+            color: var(--HGH-History-accent-color);
+            transition: all 0.25s ease;
+            font-family: inherit;
+            margin-top: 6px;
+        }
+        .HGH-History-exercise-show-btn:hover {
+            background-color: var(--HGH-History-exercise-btn-hover-bg);
+            transform: translateY(-1px);
+        }
+        .HGH-History-exercise-show-btn .HGH-History-btn-icon {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+        .HGH-History-exercise-show-btn.revealed .HGH-History-btn-icon {
+            transform: rotate(180deg);
+        }
+
+        /* type02 map exercise */
+        .HGH-History-exercise-map-wrapper {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .HGH-History-exercise-map-wrapper img {
+            max-width: 100%;
+            height: auto;
+            max-height: 420px;
+            border-radius: 10px;
+            border: 1px solid var(--HGH-History-border-color);
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color var(--HGH-History-transition-speed) ease;
+            box-shadow: 0 2px 10px var(--HGH-History-shadow-color);
+        }
+        .HGH-History-exercise-map-wrapper img:hover {
+            transform: scale(1.015);
+        }
+        .HGH-History-exercise-map-caption {
+            font-size: 0.9rem;
+            color: var(--HGH-History-text-secondary);
+            margin-top: 8px;
+            font-weight: 500;
+            transition: color var(--HGH-History-transition-speed) ease;
+        }
+        .HGH-History-exercise-map-answer {
+            margin-top: 18px;
+            border-top: 2px solid var(--HGH-History-accent-color);
+            padding-top: 16px;
+        }
+        .HGH-History-exercise-map-label {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #fff;
+            background-color: var(--HGH-History-accent-color);
+            padding: 3px 12px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+        [data-theme="dark"] .HGH-History-exercise-map-label {
+            color: #1a1a1f;
+        }
+
+        /* ═══════════ LIGHTBOX ═══════════ */
+        .HGH-History-lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .HGH-History-lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .HGH-History-lightbox-container {
+            position: relative;
+            max-width: 95%;
+            max-height: 95%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .HGH-History-lightbox-container img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            transition: transform 0.3s ease, max-width 0.3s ease, max-height 0.3s ease;
+            cursor: zoom-in;
+        }
+        .HGH-History-lightbox-container img.zoomed {
+            max-width: none;
+            max-height: none;
+            width: auto;
+            height: auto;
+            overflow: auto;
+            cursor: zoom-out;
+            transform: scale(1);
+        }
+        .HGH-History-lightbox-close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 10001;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+        .HGH-History-lightbox-close:hover {
+            color: #ccc;
+        }
+        .HGH-History-lightbox-container.zoomed-container {
+            overflow: auto;
+            max-width: 100vw;
+            max-height: 100vh;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+
+        /* ═══════════ PDF MODAL ═══════════ */
+        .HGH-History-pdf-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 10002;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .HGH-History-pdf-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .HGH-History-pdf-modal {
+            background-color: var(--HGH-History-surface-color);
+            border-radius: 14px;
+            padding: 30px 28px 24px;
+            width: 90%;
+            max-width: 440px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
+            direction: rtl;
+            text-align: right;
+            transition: background-color var(--HGH-History-transition-speed) ease;
+            position: relative;
+        }
+        body.HGH-History-ltr .HGH-History-pdf-modal {
+            direction: ltr;
+            text-align: left;
+        }
+        .HGH-History-pdf-modal-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--HGH-History-heading-color);
+            margin-bottom: 6px;
+            text-align: center;
+            transition: color var(--HGH-History-transition-speed) ease;
+        }
+        .HGH-History-pdf-modal-subtitle {
+            font-size: 0.85rem;
+            color: var(--HGH-History-text-secondary);
+            margin-bottom: 22px;
+            text-align: center;
+            transition: color var(--HGH-History-transition-speed) ease;
+        }
+        .HGH-History-pdf-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .HGH-History-pdf-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background-color: var(--HGH-History-highlight-bg);
+            border: 1.5px solid var(--HGH-History-border-color);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+        .HGH-History-pdf-option:hover {
+            border-color: var(--HGH-History-accent-color);
+            background-color: var(--HGH-History-accent-light);
+        }
+        .HGH-History-pdf-checkbox {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--HGH-History-accent-color);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .HGH-History-pdf-option-label {
+            font-weight: 600;
+            color: var(--HGH-History-text-color);
+            font-size: 0.95rem;
+            transition: color var(--HGH-History-transition-speed) ease;
+        }
+        .HGH-History-pdf-option-hint {
+            font-size: 0.75rem;
+            color: var(--HGH-History-text-secondary);
+            margin-right: auto;
+            margin-left: 0;
+            transition: color var(--HGH-History-transition-speed) ease;
+        }
+        body.HGH-History-ltr .HGH-History-pdf-option-hint {
+            margin-right: 0;
+            margin-left: auto;
+        }
+        .HGH-History-pdf-modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .HGH-History-pdf-modal-btn {
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-family: inherit;
+            border: 1.5px solid var(--HGH-History-border-color);
+            transition: all 0.25s ease;
+            background-color: var(--HGH-History-toggle-bg);
+            color: var(--HGH-History-text-color);
+        }
+        .HGH-History-pdf-modal-btn:hover {
+            background-color: var(--HGH-History-accent-light);
+            border-color: var(--HGH-History-accent-color);
+        }
+        .HGH-History-pdf-modal-btn.primary-btn {
+            background-color: var(--HGH-History-accent-color);
+            color: #fff;
+            border-color: var(--HGH-History-accent-color);
+        }
+        .HGH-History-pdf-modal-btn.primary-btn:hover {
+            background-color: #7a5c12;
+        }
+        [data-theme="dark"] .HGH-History-pdf-modal-btn.primary-btn {
+            color: #1a1a1f;
+        }
+        [data-theme="dark"] .HGH-History-pdf-modal-btn.primary-btn:hover {
+            background-color: #c09430;
+        }
+        .HGH-History-pdf-modal-close {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--HGH-History-text-secondary);
+            line-height: 1;
+            transition: color 0.2s;
+        }
+        body.HGH-History-ltr .HGH-History-pdf-modal-close {
+            right: auto;
+            left: 14px;
+        }
+        .HGH-History-pdf-modal-close:hover {
+            color: var(--HGH-History-accent-color);
+        }
+        .HGH-History-pdf-loading-spinner {
+            display: none;
+            width: 36px;
+            height: 36px;
+            border: 4px solid var(--HGH-History-border-color);
+            border-top-color: var(--HGH-History-accent-color);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 12px;
+        }
+        .HGH-History-pdf-loading-spinner.visible {
+            display: block;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .HGH-History-site-footer {
+            background-color: var(--HGH-History-surface-color);
+            border-top: 2px solid var(--HGH-History-border-color);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            font-size: 0.85rem;
+            color: var(--HGH-History-text-secondary);
+            box-shadow: 0 -2px 8px var(--HGH-History-shadow-color);
+            transition: background-color var(--HGH-History-transition-speed) ease, border-color var(--HGH-History-transition-speed) ease, color var(--HGH-History-transition-speed) ease;
+        }
+        body.HGH-History-ltr .HGH-History-site-footer {
+            flex-direction: row-reverse;
+        }
+        .HGH-History-footer-item {
+            flex: 1;
+            text-align: center;
+        }
+        .HGH-History-footer-item:first-child {
+            text-align: right;
+        }
+        .HGH-History-footer-item:last-child {
+            text-align: left;
+        }
+        body.HGH-History-ltr .HGH-History-footer-item:first-child {
+            text-align: right;
+        }
+        body.HGH-History-ltr .HGH-History-footer-item:last-child {
+            text-align: left;
+        }
+
+        /* ═══════════ RESPONSIVE ═══════════ */
+        @media (max-width: 768px) {
+            .HGH-History-site-header {
+                padding: 10px 14px;
+                flex-wrap: wrap;
+                gap: 6px;
+            }
+            .HGH-History-header-right,
+            .HGH-History-header-left {
+                min-width: auto;
+                flex-shrink: 1;
+                gap: 6px;
+            }
+            .HGH-History-header-right .HGH-History-icon {
+                font-size: 1.5rem;
+            }
+            .HGH-History-lang-select {
+                font-size: 0.75rem;
+                padding: 5px 7px;
+                min-width: 55px;
+            }
+            .HGH-History-header-center .HGH-History-line1 {
+                font-size: 1rem;
+            }
+            .HGH-History-header-center .HGH-History-line2 {
+                font-size: 0.8rem;
+            }
+            .HGH-History-main-container {
+                padding: 16px 10px 36px;
+            }
+            .HGH-History-section-card {
+                padding: 16px 14px;
+                border-radius: 8px;
+                margin-bottom: 14px;
+            }
+            .HGH-History-lesson-title {
+                font-size: 1.45rem;
+            }
+            .HGH-History-exercise-section-title {
+                font-size: 1.25rem;
+            }
+            .HGH-History-exercise-item {
+                padding: 12px 14px;
+            }
+            .HGH-History-exercise-term {
+                font-size: 1rem;
+            }
+            .HGH-History-exercise-map-wrapper img {
+                max-height: 280px;
+            }
+            .HGH-History-site-footer {
+                flex-wrap: wrap;
+                padding: 10px 14px;
+                font-size: 0.75rem;
+            }
+            .HGH-History-footer-item {
+                flex: unset;
+                width: 100%;
+                text-align: center !important;
+                margin: 2px 0;
+            }
+            .HGH-History-pdf-modal {
+                padding: 22px 16px 18px;
+                width: 95%;
+                max-width: 380px;
+            }
+            .HGH-History-download-btn {
+                padding: 10px 22px;
+                font-size: 0.9rem;
+            }
+        }
+        @media (max-width: 420px) {
+            .HGH-History-header-right .HGH-History-icon {
+                font-size: 1.2rem;
+            }
+            .HGH-History-lang-select {
+                font-size: 0.7rem;
+                padding: 4px 5px;
+                min-width: 45px;
+                border-radius: 6px;
+            }
+            .HGH-History-header-left button {
+                padding: 5px 10px;
+                font-size: 0.75rem;
+                border-radius: 6px;
+            }
+            .HGH-History-header-center .HGH-History-line1 {
+                font-size: 0.9rem;
+            }
+            .HGH-History-header-center .HGH-History-line2 {
+                font-size: 0.75rem;
+            }
+            .HGH-History-section-card {
+                padding: 12px 10px;
+            }
+            .HGH-History-exercise-item {
+                padding: 10px 12px;
+            }
+            .HGH-History-exercise-map-wrapper img {
+                max-height: 200px;
+            }
+            .HGH-History-pdf-modal {
+                padding: 18px 12px 14px;
+            }
+        }
+
+        /* ═══════════ PRINT RULES ═══════════ */
+        @media print {
+            .no-print,
+            .HGH-History-download-wrapper,
+            .HGH-History-pdf-modal-overlay,
+            #pdfModalOverlay,
+            .HGH-History-lightbox-overlay,
+            .HGH-History-exercise-show-btn {
+                display: none !important;
+            }
+            .HGH-History-site-header,
+            .HGH-History-site-footer {
+                position: static !important;
+                display: flex !important;
+                background: #fff !important;
+                box-shadow: none !important;
+                color: #000 !important;
+                border: none !important;
+                border-bottom: 1px solid #000 !important;
+                border-top: 1px solid #000 !important;
+                padding: 4px 16px !important;
+                margin: 0 !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+            .HGH-History-site-footer {
+                border-bottom: none !important;
+                margin-top: 20px !important;
+            }
+            .HGH-History-header-left {
+                display: none !important;
+            }
+            .HGH-History-header-right {
+                min-width: auto !important;
+                flex-shrink: 0 !important;
+            }
+            .HGH-History-header-right .HGH-History-icon {
+                font-size: 1.1rem !important;
+                color: #000 !important;
+            }
+            .HGH-History-header-center {
+                flex: 0 1 auto !important;
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                gap: 6px !important;
+            }
+            .HGH-History-header-center .HGH-History-line1 {
+                font-size: 0.9rem !important;
+                font-weight: 700 !important;
+                color: #000 !important;
+                white-space: nowrap !important;
+            }
+            .HGH-History-header-center .HGH-History-line2 {
+                font-size: 0.8rem !important;
+                font-weight: 500 !important;
+                color: #333 !important;
+                white-space: nowrap !important;
+            }
+            .HGH-History-footer-item {
+                flex: 0 0 auto !important;
+                white-space: nowrap !important;
+                font-size: 0.7rem !important;
+                width: auto !important;
+            }
+            body {
+                background: #fff !important;
+                color: #000 !important;
+                padding: 0 !important;
+            }
+            @page {
+                margin: 12mm;
+            }
+            .HGH-History-section-card,
+            .HGH-History-main-container {
+                background: #fff !important;
+                box-shadow: none !important;
+                border: 1px solid #ccc;
+            }
+            .HGH-History-exercise-answer-wrapper {
+                max-height: none !important;
+                opacity: 1 !important;
+                overflow: visible !important;
+            }
+            .HGH-History-exercise-answer-content {
+                border: 1px solid #ccc !important;
+                background: #fafafa !important;
+            }
+            .HGH-History-exercise-item {
+                page-break-inside: avoid;
+            }
+            * {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ═══════════════ HEADER ═══════════════ -->
+    <header class="HGH-History-site-header">
+        <div class="HGH-History-header-right">
+            <span class="HGH-History-icon" aria-hidden="true">🌍</span>
+        </div>
+        <div class="HGH-History-header-center">
+            <div class="HGH-History-line1" data-i18n="header-line1">دروس تاريخ</div>
+            <div class="HGH-History-line2" data-i18n="header-line2">باكالوريا آداب واقتصاد</div>
+        </div>
+        <div class="HGH-History-header-left no-print">
+            <button id="themeToggle" data-i18n-title="theme-toggle-title" data-i18n-aria="theme-toggle-aria" title="تبديل الوضع الليلي / النهاري" aria-label="تبديل السمة">
+                <span class="HGH-History-icon">🌓</span> <span data-i18n="theme-toggle-text">السمة</span>
+            </button>
+            <select id="languageSelect" class="HGH-History-lang-select" data-i18n-aria="lang-select-aria" aria-label="اختيار اللغة">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+    <div class="HGH-History-main-container">
+        <div class="HGH-History-lesson-heading">
+            <h1 class="HGH-History-lesson-title" data-i18n="lesson-title">تمارين – الحرب العالمية الأولى: الأسباب والنتائج</h1>
+            <p class="HGH-History-lesson-subtitle" data-i18n="lesson-subtitle">📝 تمارين تفاعلية – أجب ثم تحقق من الإجابة</p>
+        </div>
+
+        <!-- Exercise Type 01 container -->
+        <div class="HGH-History-section-card" id="exercise-type01-container">
+            <!-- Filled by historyExType01() -->
+        </div>
+
+        <hr class="HGH-History-section-divider" aria-hidden="true">
+
+        <!-- Exercise Type 02 container -->
+        <div class="HGH-History-section-card" id="exercise-type02-container">
+            <!-- Filled by historyExType02() -->
+        </div>
+
+        <!-- ═══════════ DOWNLOAD PDF BUTTON ═══════════ -->
+        <div class="HGH-History-download-wrapper no-print">
+            <button class="HGH-History-download-btn" id="openPdfModalBtn" title="تحميل PDF">
+                📥 تحميل PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="HGH-History-site-footer">
+        <div class="HGH-History-footer-item" data-i18n="footer-version">النسخة 0.0.1</div>
+        <div class="HGH-History-footer-item" data-i18n="footer-visit">قم بزيارتنا</div>
+        <div class="HGH-History-footer-item" data-i18n="footer-developer">المطور: زياد الماجري</div>
+    </footer>
+
+    <!-- ═══════════ PDF OPTIONS MODAL ═══════════ -->
+    <div class="HGH-History-pdf-modal-overlay no-print" id="pdfModalOverlay">
+        <div class="HGH-History-pdf-modal" role="dialog" aria-labelledby="pdfModalTitle" aria-modal="true">
+            <button class="HGH-History-pdf-modal-close" id="pdfModalClose" aria-label="إغلاق">&times;</button>
+            <div class="HGH-History-pdf-modal-title" id="pdfModalTitle">📄 خيارات تحميل PDF</div>
+            <div class="HGH-History-pdf-modal-subtitle">حدد المحتوى الذي تريد تضمينه في الملف</div>
+            <div class="HGH-History-pdf-options">
+                <label class="HGH-History-pdf-option" id="optionType01">
+                    <input type="checkbox" class="HGH-History-pdf-checkbox" id="chkType01" checked>
+                    <span class="HGH-History-pdf-option-label">📝 تعريفات</span>
+                    <span class="HGH-History-pdf-option-hint">تمارين النوع الأول</span>
+                </label>
+                <label class="HGH-History-pdf-option" id="optionType02">
+                    <input type="checkbox" class="HGH-History-pdf-checkbox" id="chkType02" checked>
+                    <span class="HGH-History-pdf-option-label">🗺️ خريطة</span>
+                    <span class="HGH-History-pdf-option-hint">تمرين إكمال الخريطة</span>
+                </label>
+            </div>
+            <div class="HGH-History-pdf-loading-spinner" id="pdfLoadingSpinner"></div>
+            <div class="HGH-History-pdf-modal-actions">
+                <button class="HGH-History-pdf-modal-btn" id="pdfModalCancel">إلغاء</button>
+                <button class="HGH-History-pdf-modal-btn primary-btn" id="pdfModalGenerate">⬇️ توليد وتحميل</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ SCRIPTS ═══════════════ -->
+    <script>
+        /* ================================================================
+           LIGHTBOX – Global image viewer (reused from lesson template)
+           ================================================================ */
+        (function() {
+            var overlay = document.createElement('div');
+            overlay.className = 'HGH-History-lightbox-overlay';
+            var container = document.createElement('div');
+            container.className = 'HGH-History-lightbox-container';
+            var lightboxImg = document.createElement('img');
+            var closeBtn = document.createElement('button');
+            closeBtn.className = 'HGH-History-lightbox-close';
+            closeBtn.innerHTML = '&times;';
+            container.appendChild(lightboxImg);
+            overlay.appendChild(closeBtn);
+            overlay.appendChild(container);
+            document.body.appendChild(overlay);
+
+            function openLightbox(src) {
+                lightboxImg.src = src;
+                lightboxImg.classList.remove('zoomed');
+                container.classList.remove('zoomed-container');
+                overlay.classList.add('active');
+            }
+
+            function closeLightbox() {
+                overlay.classList.remove('active');
+                lightboxImg.src = '';
+            }
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) closeLightbox();
+            });
+            closeBtn.addEventListener('click', closeLightbox);
+            lightboxImg.addEventListener('click', function(e) {
+                e.stopPropagation();
+                lightboxImg.classList.toggle('zoomed');
+                if (lightboxImg.classList.contains('zoomed')) {
+                    container.classList.add('zoomed-container');
+                    lightboxImg.style.cursor = 'zoom-out';
+                } else {
+                    container.classList.remove('zoomed-container');
+                    lightboxImg.style.cursor = 'zoom-in';
+                }
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlay.classList.contains('active')) closeLightbox();
+            });
+            window.openLightbox = openLightbox;
+        })();
+
+        /* ================================================================
+           THEME & LANGUAGE – Reused from lesson template
+           ================================================================ */
+        (function() {
+            const translations = {
+                ar: {
+                    'header-line1': 'دروس تاريخ',
+                    'header-line2': 'باكالوريا آداب واقتصاد',
+                    'theme-toggle-text': 'السمة',
+                    'theme-toggle-title': 'تبديل الوضع الليلي / النهاري',
+                    'theme-toggle-aria': 'تبديل السمة',
+                    'lang-select-aria': 'اختيار اللغة',
+                    'lesson-title': 'تمارين – الحرب العالمية الأولى: الأسباب والنتائج',
+                    'lesson-subtitle': '📝 تمارين تفاعلية – أجب ثم تحقق من الإجابة',
+                    'footer-version': 'النسخة 0.0.1',
+                    'footer-visit': 'قم بزيارتنا',
+                    'footer-developer': 'المطور: زياد الماجري'
+                },
+                en: {
+                    'header-line1': 'History Lessons',
+                    'header-line2': 'Baccalaureate Arts & Economics',
+                    'theme-toggle-text': 'Theme',
+                    'theme-toggle-title': 'Toggle dark / light mode',
+                    'theme-toggle-aria': 'Toggle theme',
+                    'lang-select-aria': 'Select language',
+                    'lesson-title': 'Exercises – World War I: Causes and Consequences',
+                    'lesson-subtitle': '📝 Interactive exercises – Answer then check',
+                    'footer-version': 'Version 0.0.1',
+                    'footer-visit': 'Visit Us',
+                    'footer-developer': 'Developer: Zied Majeri'
+                },
+                fr: {
+                    'header-line1': "Leçons d'Histoire",
+                    'header-line2': 'Baccalauréat Lettres & Économie',
+                    'theme-toggle-text': 'Thème',
+                    'theme-toggle-title': 'Basculer mode sombre / clair',
+                    'theme-toggle-aria': 'Changer le thème',
+                    'lang-select-aria': 'Choisir la langue',
+                    'lesson-title': 'Exercices – La Première Guerre mondiale : causes et conséquences',
+                    'lesson-subtitle': '📝 Exercices interactifs – Répondez puis vérifiez',
+                    'footer-version': 'Version 0.0.1',
+                    'footer-visit': 'Visitez-nous',
+                    'footer-developer': 'Développeur : Zied Majeri'
+                }
+            };
+            const html = document.documentElement;
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+            const languageSelect = document.getElementById('languageSelect');
+            const STORAGE_THEME_KEY = 'ww1-exercises-theme';
+            const STORAGE_DIR_KEY = 'ww1-exercises-dir';
+            const STORAGE_LANG_KEY = 'ww1-exercises-lang';
+
+            function getStoredTheme() { try { return localStorage.getItem(STORAGE_THEME_KEY); } catch (e) { return null; } }
+
+            function setStoredTheme(theme) { try { localStorage.setItem(STORAGE_THEME_KEY, theme); } catch (e) {} }
+
+            function getStoredDir() { try { return localStorage.getItem(STORAGE_DIR_KEY); } catch (e) { return null; } }
+
+            function setStoredDir(dir) { try { localStorage.setItem(STORAGE_DIR_KEY, dir); } catch (e) {} }
+
+            function getStoredLang() { try { return localStorage.getItem(STORAGE_LANG_KEY); } catch (e) { return null; } }
+
+            function setStoredLang(lang) { try { localStorage.setItem(STORAGE_LANG_KEY, lang); } catch (e) {} }
+
+            function applyTheme(theme) {
+                if (theme === 'dark') { html.setAttribute('data-theme', 'dark'); } else { html.removeAttribute('data-theme'); }
+            }
+
+            function applyDir(dir) {
+                if (dir === 'ltr') { body.classList.add('HGH-History-ltr');
+                    html.setAttribute('dir', 'ltr'); } else { body.classList.remove('HGH-History-ltr');
+                    html.setAttribute('dir', 'rtl'); }
+            }
+
+            function translatePage(lang) {
+                if (!translations[lang]) { lang = 'ar'; }
+                document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                    var key = el.getAttribute('data-i18n');
+                    if (translations[lang] && translations[lang][key]) { el.textContent = translations[lang][key]; }
+                });
+                document.querySelectorAll('[data-i18n-title]').forEach(function(el) {
+                    var key = el.getAttribute('data-i18n-title');
+                    if (translations[lang] && translations[lang][key]) { el.setAttribute('title', translations[lang][key]); }
+                });
+                document.querySelectorAll('[data-i18n-aria]').forEach(function(el) {
+                    var key = el.getAttribute('data-i18n-aria');
+                    if (translations[lang] && translations[lang][key]) { el.setAttribute('aria-label', translations[lang][key]); }
+                });
+                html.setAttribute('lang', lang);
+                if (lang === 'ar') { applyDir('rtl');
+                    setStoredDir('rtl'); } else { applyDir('ltr');
+                    setStoredDir('ltr'); }
+                if (languageSelect && languageSelect.value !== lang) { languageSelect.value = lang; }
+                setStoredLang(lang);
+            }
+
+            function initialize() {
+                const savedTheme = getStoredTheme();
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+                applyTheme(initialTheme);
+                const savedDir = getStoredDir();
+                if (savedDir) { applyDir(savedDir); }
+                const savedLang = getStoredLang();
+                const initialLang = savedLang || 'ar';
+                if (languageSelect) { languageSelect.value = initialLang; }
+                translatePage(initialLang);
+            }
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = (currentTheme === 'dark') ? 'light' : 'dark';
+                applyTheme(newTheme);
+                setStoredTheme(newTheme);
+            });
+            languageSelect.addEventListener('change', function() {
+                translatePage(this.value);
+            });
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+                if (!getStoredTheme()) { applyTheme(e.matches ? 'dark' : 'light'); }
+            });
+            initialize();
+        })();
+
+        /* ================================================================
+           PDF MODAL – Adapted for exercises page
+           ================================================================ */
+        (function() {
+            const modalOverlay = document.getElementById('pdfModalOverlay');
+            const openBtn = document.getElementById('openPdfModalBtn');
+            const closeBtn = document.getElementById('pdfModalClose');
+            const cancelBtn = document.getElementById('pdfModalCancel');
+            const generateBtn = document.getElementById('pdfModalGenerate');
+            const chkType01 = document.getElementById('chkType01');
+            const chkType02 = document.getElementById('chkType02');
+
+            openBtn.addEventListener('click', () => modalOverlay.classList.add('active'));
+
+            function closeModal() { modalOverlay.classList.remove('active'); }
+            closeBtn.addEventListener('click', closeModal);
+            cancelBtn.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) closeModal();
+            });
+
+            generateBtn.addEventListener('click', function() {
+                if (!chkType01.checked) {
+                    document.body.classList.add('no-type01');
+                }
+                if (!chkType02.checked) {
+                    document.body.classList.add('no-type02');
+                }
+
+                closeModal();
+
+                setTimeout(() => {
+                    window.print();
+                }, 100);
+
+                window.addEventListener('afterprint', function cleanup() {
+                    document.body.classList.remove('no-type01', 'no-type02');
+                    window.removeEventListener('afterprint', cleanup);
+                });
+                setTimeout(() => {
+                    document.body.classList.remove('no-type01', 'no-type02');
+                }, 5000);
+            });
+
+            // Add print CSS for checkboxes
+            const printStyleEl = document.createElement('style');
+            printStyleEl.textContent =
+                '@media print { body.no-type01 #exercise-type01-container { display: none !important; } body.no-type02 #exercise-type02-container { display: none !important; } }';
+            document.head.appendChild(printStyleEl);
+        })();
+
+        /* ================================================================
+           MODULAR EXERCISE FUNCTIONS
+           These functions are designed to be reusable across lessons.
+           Copy them to any exercise page and call with appropriate parameters.
+           ================================================================ */
+
+        /**
+         * historyExType01 – Definition exercises
+         *
+         * Renders a list of terms. Each term has a "Show Answer" button
+         * that reveals the expected definition with a smooth animation.
+         *
+         * @param {Object} config
+         * @param {string} config.containerId  – ID of the container element
+         * @param {string} config.title        – Section title (e.g. "عرّف المصطلحات التالية")
+         * @param {Array}  config.exercises    – Array of { term, answer } objects
+         * @param {string} [config.showBtnText] – Text for the show-answer button (default: "إظهار الإجابة")
+         * @param {string} [config.hideBtnText] – Text for the hide-answer button (default: "إخفاء الإجابة")
+         * @param {string} [config.answerLabel] – Label prepended to the answer (default: "📖 التعريف:")
+         */
+        function historyExType01(config) {
+            var container = document.getElementById(config.containerId);
+            if (!container) {
+                console.warn('historyExType01: container #' + config.containerId + ' not found.');
+                return;
+            }
+
+            var showBtnText = config.showBtnText || 'إظهار الإجابة';
+            var hideBtnText = config.hideBtnText || 'إخفاء الإجابة';
+            var answerLabel = config.answerLabel || '📖 التعريف:';
+            var exercises = config.exercises || [];
+            var title = config.title || 'عرّف المصطلحات التالية';
+
+            // Build HTML
+            var html = '<h2 class="HGH-History-exercise-section-title">' + title + '</h2>';
+
+            exercises.forEach(function(ex, index) {
+                var num = index + 1;
+                html += '<div class="HGH-History-exercise-item" data-exercise-index="' + index + '">';
+                html +=
+                    '<div class="HGH-History-exercise-term"><span class="HGH-History-exercise-number">' +
+                    num + '</span>' + ex.term + '</div>';
+                html += '<div class="HGH-History-exercise-answer-wrapper" id="answer-wrapper-' + config
+                    .containerId + '-' + index + '">';
+                html += '<div class="HGH-History-exercise-answer-content"><strong>' + answerLabel +
+                    '</strong> ' + ex.answer + '</div>';
+                html += '</div>';
+                html +=
+                    '<button class="HGH-History-exercise-show-btn" id="show-btn-' + config.containerId +
+                    '-' + index + '" data-target="answer-wrapper-' + config.containerId + '-' + index +
+                    '" data-show-text="' + showBtnText + '" data-hide-text="' + hideBtnText + '">';
+                html += '<span class="HGH-History-btn-icon">▼</span> ' + showBtnText;
+                html += '</button>';
+                html += '</div>';
+            });
+
+            container.innerHTML = html;
+
+            // Attach event listeners
+            exercises.forEach(function(_, index) {
+                var btn = document.getElementById('show-btn-' + config.containerId + '-' + index);
+                var wrapper = document.getElementById('answer-wrapper-' + config.containerId + '-' + index);
+                if (!btn || !wrapper) return;
+
+                btn.addEventListener('click', function() {
+                    var isRevealed = wrapper.classList.contains('revealed');
+                    if (isRevealed) {
+                        wrapper.classList.remove('revealed');
+                        btn.classList.remove('revealed');
+                        btn.innerHTML = '<span class="HGH-History-btn-icon">▼</span> ' + btn.getAttribute(
+                            'data-show-text');
+                    } else {
+                        wrapper.classList.add('revealed');
+                        btn.classList.add('revealed');
+                        btn.innerHTML = '<span class="HGH-History-btn-icon">▼</span> ' + btn.getAttribute(
+                            'data-hide-text');
+                    }
+                });
+            });
+        }
+
+        /**
+         * historyExType02 – Map completion exercise
+         *
+         * Shows an incomplete map. The student must mentally complete it,
+         * then click "Show Answer" to reveal the completed map.
+         *
+         * @param {Object} config
+         * @param {string} config.containerId    – ID of the container element
+         * @param {string} config.title          – Section title
+         * @param {string} config.incompleteMap  – Path to the incomplete map image
+         * @param {string} config.completeMap    – Path to the complete (answer) map image
+         * @param {string} [config.caption]      – Caption under the incomplete map
+         * @param {string} [config.answerCaption]– Caption under the complete map
+         * @param {string} [config.showBtnText]  – Text for the show-answer button
+         * @param {string} [config.hideBtnText]  – Text for the hide-answer button
+         * @param {string} [config.answerBadge]  – Badge text on the answer map
+         */
+        function historyExType02(config) {
+            var container = document.getElementById(config.containerId);
+            if (!container) {
+                console.warn('historyExType02: container #' + config.containerId + ' not found.');
+                return;
+            }
+
+            var title = config.title || 'أكمل الخريطة التالية';
+            var incompleteMap = config.incompleteMap || '';
+            var completeMap = config.completeMap || '';
+            var caption = config.caption || '';
+            var answerCaption = config.answerCaption || 'الخريطة المكتملة (الإجابة)';
+            var showBtnText = config.showBtnText || 'إظهار الإجابة';
+            var hideBtnText = config.hideBtnText || 'إخفاء الإجابة';
+            var answerBadge = config.answerBadge || '🗺️ الإجابة';
+
+            var uniqueId = config.containerId + '-map';
+
+            var html = '<h2 class="HGH-History-exercise-section-title">' + title + '</h2>';
+
+            // Incomplete map
+            html += '<div class="HGH-History-exercise-map-wrapper">';
+            if (incompleteMap) {
+                html += '<img src="' + incompleteMap +
+                    '" alt="خريطة غير مكتملة" onclick="openLightbox(this.src)" loading="lazy">';
+            } else {
+                html += '<div class="HGH-History-placeholder">الخريطة غير متوفرة</div>';
+            }
+            if (caption) {
+                html += '<p class="HGH-History-exercise-map-caption">' + caption + '</p>';
+            }
+            html += '</div>';
+
+            // Show answer button
+            html += '<div style="text-align:center;margin-top:14px;">';
+            html += '<button class="HGH-History-exercise-show-btn" id="show-btn-' + uniqueId +
+                '" data-show-text="' + showBtnText + '" data-hide-text="' + hideBtnText + '">';
+            html += '<span class="HGH-History-btn-icon">▼</span> ' + showBtnText;
+            html += '</button>';
+            html += '</div>';
+
+            // Answer section (hidden initially)
+            html += '<div class="HGH-History-exercise-answer-wrapper" id="answer-wrapper-' + uniqueId + '">';
+            html += '<div class="HGH-History-exercise-map-answer">';
+            html += '<span class="HGH-History-exercise-map-label">' + answerBadge + '</span>';
+            html += '<div class="HGH-History-exercise-map-wrapper">';
+            if (completeMap) {
+                html += '<img src="' + completeMap +
+                    '" alt="الخريطة المكتملة" onclick="openLightbox(this.src)" loading="lazy">';
+            } else {
+                html += '<div class="HGH-History-placeholder">خريطة الإجابة غير متوفرة</div>';
+            }
+            html += '<p class="HGH-History-exercise-map-caption">' + answerCaption + '</p>';
+            html += '</div>';
+            html += '</div>';
+            html += '</div>';
+
+            container.innerHTML = html;
+
+            // Attach event listener
+            var btn = document.getElementById('show-btn-' + uniqueId);
+            var wrapper = document.getElementById('answer-wrapper-' + uniqueId);
+            if (!btn || !wrapper) return;
+
+            btn.addEventListener('click', function() {
+                var isRevealed = wrapper.classList.contains('revealed');
+                if (isRevealed) {
+                    wrapper.classList.remove('revealed');
+                    btn.classList.remove('revealed');
+                    btn.innerHTML = '<span class="HGH-History-btn-icon">▼</span> ' + btn.getAttribute(
+                        'data-show-text');
+                } else {
+                    wrapper.classList.add('revealed');
+                    btn.classList.add('revealed');
+                    btn.innerHTML = '<span class="HGH-History-btn-icon">▼</span> ' + btn.getAttribute(
+                        'data-hide-text');
+                }
+            });
+        }
+
+        /* ================================================================
+           CALL THE EXERCISE FUNCTIONS FOR THIS LESSON
+           To reuse these exercises for another lesson:
+           1. Keep the function definitions above.
+           2. Change the parameters below to match the new lesson's content.
+           ================================================================ */
+
+        // --- Type 01: Definitions (3 terms from the WWI lesson) ---
+        historyExType01({
+            containerId: 'exercise-type01-container',
+            title: '📝 عرّف المصطلحات التالية',
+            showBtnText: 'إظهار الإجابة',
+            hideBtnText: 'إخفاء الإجابة',
+            answerLabel: '📖 التعريف:',
+            exercises: [{
+                term: 'السياسة العالمية (Weltpolitik)',
+                answer: 'استراتيجية توسعية انتهجها الإمبراطور الألماني <strong>غليوم الثاني</strong> بعد إقالة بسمارك عام 1890، هدفت إلى بناء أسطول بحري ضخم، واقتناص مستعمرات في إفريقيا وآسيا، ومد النفوذ الاقتصادي عبر مشروع سكة حديد برلين-بغداد. أدت هذه السياسة إلى صدام مباشر مع المصالح البريطانية والفرنسية والروسية، وساهمت في تشكيل أحلاف مضادة لألمانيا.'
+            }, {
+                term: 'الحلف الثلاثي',
+                answer: 'تحالف عسكري دفاعي نشأ بين <strong>ألمانيا والإمبراطورية النمساوية المجرية</strong> (أكتوبر 1879)، وانضمت إليه <strong>إيطاليا</strong> (مارس 1882). هدف إلى عزل فرنسا والحفاظ على الوضع القائم في أوروبا. انسحبت إيطاليا منه عام 1915، وتدعم الحلف لاحقاً بانضمام <strong>الدولة العثمانية</strong> (1914) و<strong>بلغاريا</strong> (1915) ليشكل نواة "دول المركز" خلال الحرب العالمية الأولى.'
+            }, {
+                term: 'جمعية الأمم',
+                answer: 'منظمة دولية تأسست عام 1920 بموجب <strong>معاهدة فرساي</strong> ومقرها <strong>جنيف</strong>، استناداً إلى المبدأ الرابع عشر من برنامج الرئيس الأمريكي <strong>وودرو ويلسون</strong>. هدفت إلى ضمان الأمن الجماعي، والحد من التسلح، وتسوية النزاعات سلمياً. لكنها افتقرت إلى جيش دائم، وتطلبت قراراتها الإجماع، ولم تنضم إليها <strong>الولايات المتحدة</strong>، مما أضعف فعاليتها وجعلها عاجزة عن منع الحرب العالمية الثانية.'
+            }]
+        });
+
+        // --- Type 02: Map completion (Europe before WWI) ---
+        historyExType02({
+            containerId: 'exercise-type02-container',
+            title: '🗺️ أكمل الخريطة التالية',
+            incompleteMap: 'assets2/exercises/history/worldBeforeWWI1.jpg',
+            completeMap: 'assets2/exercises/history/worldBeforeWWI2.jpg',
+            caption: 'خريطة أوروبا قبل الحرب العالمية الأولى – أجب عن الأسئلة ثم تحقق من الإجابة',
+            answerCaption: 'الخريطة المكتملة – نموذج الإجابة',
+            showBtnText: 'إظهار الإجابة',
+            hideBtnText: 'إخفاء الإجابة',
+            answerBadge: '🗺️ الإجابة'
+        });
+    </script>
+</body>
+</html>
