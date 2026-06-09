@@ -97,6 +97,10 @@
             if (t[key] !== undefined) el.setAttribute('aria-label', t[key]);
         });
 
+document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-placeholder');
+    if (t[key] !== undefined) el.setAttribute('placeholder', t[key]);
+});
         document.documentElement.setAttribute('lang', lang);
 
         // Direction always follows language
