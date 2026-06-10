@@ -993,328 +993,239 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
     <!-- ═══════════════ SCRIPTS ═══════════════ -->
-    <script>
-        /* ================================================================
-           LIGHTBOX – Global image viewer (reused from lesson template)
-           ================================================================ */
-        (function() {
-            var overlay = document.createElement('div');
-            overlay.className = 'HGH-History-lightbox-overlay';
-            var container = document.createElement('div');
-            container.className = 'HGH-History-lightbox-container';
-            var lightboxImg = document.createElement('img');
-            var closeBtn = document.createElement('button');
-            closeBtn.className = 'HGH-History-lightbox-close';
-            closeBtn.innerHTML = '&times;';
-            container.appendChild(lightboxImg);
-            overlay.appendChild(closeBtn);
-            overlay.appendChild(container);
-            document.body.appendChild(overlay);
-
-            function openLightbox(src) {
-                lightboxImg.src = src;
-                lightboxImg.classList.remove('zoomed');
+    
+<script>
+    /* Lightbox (unchanged) */
+    (function() {
+        var overlay = document.createElement('div');
+        overlay.className = 'HGH-History-lightbox-overlay';
+        var container = document.createElement('div');
+        container.className = 'HGH-History-lightbox-container';
+        var lightboxImg = document.createElement('img');
+        var closeBtn = document.createElement('button');
+        closeBtn.className = 'HGH-History-lightbox-close';
+        closeBtn.innerHTML = '&times;';
+        container.appendChild(lightboxImg);
+        overlay.appendChild(closeBtn);
+        overlay.appendChild(container);
+        document.body.appendChild(overlay);
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightboxImg.classList.remove('zoomed');
+            container.classList.remove('zoomed-container');
+            overlay.classList.add('active');
+        }
+        function closeLightbox() {
+            overlay.classList.remove('active');
+            lightboxImg.src = '';
+        }
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) closeLightbox();
+        });
+        closeBtn.addEventListener('click', closeLightbox);
+        lightboxImg.addEventListener('click', function(e) {
+            e.stopPropagation();
+            lightboxImg.classList.toggle('zoomed');
+            if (lightboxImg.classList.contains('zoomed')) {
+                container.classList.add('zoomed-container');
+                lightboxImg.style.cursor = 'zoom-out';
+            } else {
                 container.classList.remove('zoomed-container');
-                overlay.classList.add('active');
+                lightboxImg.style.cursor = 'zoom-in';
             }
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && overlay.classList.contains('active')) closeLightbox();
+        });
+        window.openLightbox = openLightbox;
+    })();
+</script>
 
-            function closeLightbox() {
-                overlay.classList.remove('active');
-                lightboxImg.src = '';
-            }
-            overlay.addEventListener('click', function(e) {
-                if (e.target === overlay) closeLightbox();
-            });
-            closeBtn.addEventListener('click', closeLightbox);
-            lightboxImg.addEventListener('click', function(e) {
-                e.stopPropagation();
-                lightboxImg.classList.toggle('zoomed');
-                if (lightboxImg.classList.contains('zoomed')) {
-                    container.classList.add('zoomed-container');
-                    lightboxImg.style.cursor = 'zoom-out';
-                } else {
-                    container.classList.remove('zoomed-container');
-                    lightboxImg.style.cursor = 'zoom-in';
-                }
-            });
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && overlay.classList.contains('active')) closeLightbox();
-            });
-            window.openLightbox = openLightbox;
-        })();
-
-        /* ================================================================
-           THEME & LANGUAGE – Reused from lesson template
-           ================================================================ */
-        
-
-        /* ================================================================
-           PDF MODAL – Adapted for exercises page
-           ================================================================ */
-        (function() {
-            const modalOverlay = document.getElementById('pdfModalOverlay');
-            const openBtn = document.getElementById('openPdfModalBtn');
-            const closeBtn = document.getElementById('pdfModalClose');
-            const cancelBtn = document.getElementById('pdfModalCancel');
-            const generateBtn = document.getElementById('pdfModalGenerate');
-            const chkType01 = document.getElementById('chkType01');
-            const chkType02 = document.getElementById('chkType02');
-
-            openBtn.addEventListener('click', () => modalOverlay.classList.add('active'));
-
-            function closeModal() { modalOverlay.classList.remove('active'); }
-            closeBtn.addEventListener('click', closeModal);
-            cancelBtn.addEventListener('click', closeModal);
-            modalOverlay.addEventListener('click', (e) => {
-                if (e.target === modalOverlay) closeModal();
-            });
-
-            generateBtn.addEventListener('click', function() {
-                if (!chkType01.checked) {
-                    document.body.classList.add('no-type01');
-                }
-                if (!chkType02.checked) {
-                    document.body.classList.add('no-type02');
-                }
-
-                closeModal();
-
-                setTimeout(() => {
-                    window.print();
-                }, 100);
-
-                window.addEventListener('afterprint', function cleanup() {
-                    document.body.classList.remove('no-type01', 'no-type02');
-                    window.removeEventListener('afterprint', cleanup);
-                });
-                setTimeout(() => {
-                    document.body.classList.remove('no-type01', 'no-type02');
-                }, 5000);
-            });
-
-            // Add print CSS for checkboxes
-            const printStyleEl = document.createElement('style');
-            printStyleEl.textContent =
-                '@media print { body.no-type01 #exercise-type01-container { display: none !important; } body.no-type02 #exercise-type02-container { display: none !important; } }';
-            document.head.appendChild(printStyleEl);
-        })();
-
-        /* ================================================================
-           MODULAR EXERCISE FUNCTIONS
-           These functions are designed to be reusable across lessons.
-           Copy them to any exercise page and call with appropriate parameters.
-           ================================================================ */
-
-        /**
-         * historyExType01 – Definition exercises
-         *
-         * Renders a list of terms. Each term has a "Show Answer" button
-         * that reveals the expected definition with a smooth animation.
-         *
-         * @param {Object} config
-         * @param {string} config.containerId  – ID of the container element
-         * @param {string} config.title        – Section title (e.g. "عرّف المصطلحات التالية")
-         * @param {Array}  config.exercises    – Array of { term, answer } objects
-         * @param {string} [config.showBtnText] – Text for the show-answer button (default: "إظهار الإجابة")
-         * @param {string} [config.hideBtnText] – Text for the hide-answer button (default: "إخفاء الإجابة")
-         * @param {string} [config.answerLabel] – Label prepended to the answer (default: "📖 التعريف:")
-         */
-        function historyExType01(config) {
-            var container = document.getElementById(config.containerId);
-            if (!container) {
-                console.warn('historyExType01: container #' + config.containerId + ' not found.');
-                return;
-            }
-
-            var showBtnText = config.showBtnText || 'إظهار الإجابة';
-            var hideBtnText = config.hideBtnText || 'إخفاء الإجابة';
-            var answerLabel = config.answerLabel || '📖 التعريف:';
-            var exercises = config.exercises || [];
-            var title = config.title || 'عرّف المصطلحات التالية';
-
-            // Build HTML
-            var html = '<h2 class="HGH-History-exercise-section-title">' + title + '</h2>';
-
-            exercises.forEach(function(ex, index) {
-                var num = index + 1;
-                html += '<div class="HGH-History-exercise-item" data-exercise-index="' + index + '">';
-                html +=
-                    '<div class="HGH-History-exercise-term"><span class="HGH-History-exercise-number">' +
-                    num + '</span>' + ex.term + '</div>';
-                html += '<div class="HGH-History-exercise-answer-wrapper" id="answer-wrapper-' + config
-                    .containerId + '-' + index + '">';
-                html += '<div class="HGH-History-exercise-answer-content"><strong>' + answerLabel +
-                    '</strong> ' + ex.answer + '</div>';
-                html += '</div>';
-                html +=
-                    '<button class="HGH-History-exercise-show-btn" id="show-btn-' + config.containerId +
-                    '-' + index + '" data-target="answer-wrapper-' + config.containerId + '-' + index +
-                    '" data-show-text="' + showBtnText + '" data-hide-text="' + hideBtnText + '">';
-                html += '<span class="HGH-History-btn-icon">▼</span> ' + showBtnText;
-                html += '</button>';
-                html += '</div>';
-            });
-
-            container.innerHTML = html;
-
-            // Attach event listeners
-            exercises.forEach(function(_, index) {
-                var btn = document.getElementById('show-btn-' + config.containerId + '-' + index);
-                var wrapper = document.getElementById('answer-wrapper-' + config.containerId + '-' + index);
-                if (!btn || !wrapper) return;
-
-                btn.addEventListener('click', function() {
-                    var isRevealed = wrapper.classList.contains('revealed');
-                    if (isRevealed) {
-                        wrapper.classList.remove('revealed');
-                        btn.classList.remove('revealed');
-                        btn.innerHTML = '<span class="HGH-History-btn-icon">▼</span> ' + btn.getAttribute(
-                            'data-show-text');
-                    } else {
-                        wrapper.classList.add('revealed');
-                        btn.classList.add('revealed');
-                        btn.innerHTML = '<span class="HGH-History-btn-icon">▼</span> ' + btn.getAttribute(
-                            'data-hide-text');
-                    }
-                });
-            });
+<!-- ═══════════ Load modular exercise system ═══════════ -->
+<script src="HGH-print.js"></script>
+<script>
+    HGH_setupExercisePrint({
+        types: {
+            '01': 'exercise-type01-container',
+            '02': 'exercise-type02-container'
         }
-
-        /**
-         * historyExType02 – Map completion exercise
-         *
-         * Shows an incomplete map. The student must mentally complete it,
-         * then click "Show Answer" to reveal the completed map.
-         *
-         * @param {Object} config
-         * @param {string} config.containerId    – ID of the container element
-         * @param {string} config.title          – Section title
-         * @param {string} config.incompleteMap  – Path to the incomplete map image
-         * @param {string} config.completeMap    – Path to the complete (answer) map image
-         * @param {string} [config.caption]      – Caption under the incomplete map
-         * @param {string} [config.answerCaption]– Caption under the complete map
-         * @param {string} [config.showBtnText]  – Text for the show-answer button
-         * @param {string} [config.hideBtnText]  – Text for the hide-answer button
-         * @param {string} [config.answerBadge]  – Badge text on the answer map
-         */
-        function historyExType02(config) {
-            var container = document.getElementById(config.containerId);
-            if (!container) {
-                console.warn('historyExType02: container #' + config.containerId + ' not found.');
-                return;
-            }
-
-            var title = config.title || 'أكمل الخريطة التالية';
-            var incompleteMap = config.incompleteMap || '';
-            var completeMap = config.completeMap || '';
-            var caption = config.caption || '';
-            var answerCaption = config.answerCaption || 'الخريطة المكتملة (الإجابة)';
-            var showBtnText = config.showBtnText || 'إظهار الإجابة';
-            var hideBtnText = config.hideBtnText || 'إخفاء الإجابة';
-            var answerBadge = config.answerBadge || '🗺️ الإجابة';
-
-            var uniqueId = config.containerId + '-map';
-
-            var html = '<h2 class="HGH-History-exercise-section-title">' + title + '</h2>';
-
-            // Incomplete map
-            html += '<div class="HGH-History-exercise-map-wrapper">';
-            if (incompleteMap) {
-                html += '<img src="' + incompleteMap +
-                    '" alt="خريطة غير مكتملة" onclick="openLightbox(this.src)" loading="lazy">';
-            } else {
-                html += '<div class="HGH-History-placeholder">الخريطة غير متوفرة</div>';
-            }
-            if (caption) {
-                html += '<p class="HGH-History-exercise-map-caption">' + caption + '</p>';
-            }
-            html += '</div>';
-
-            // Show answer button
-            html += '<div style="text-align:center;margin-top:14px;">';
-            html += '<button class="HGH-History-exercise-show-btn" id="show-btn-' + uniqueId +
-                '" data-show-text="' + showBtnText + '" data-hide-text="' + hideBtnText + '">';
-            html += '<span class="HGH-History-btn-icon">▼</span> ' + showBtnText;
-            html += '</button>';
-            html += '</div>';
-
-            // Answer section (hidden initially)
-            html += '<div class="HGH-History-exercise-answer-wrapper" id="answer-wrapper-' + uniqueId + '">';
-            html += '<div class="HGH-History-exercise-map-answer">';
-            html += '<span class="HGH-History-exercise-map-label">' + answerBadge + '</span>';
-            html += '<div class="HGH-History-exercise-map-wrapper">';
-            if (completeMap) {
-                html += '<img src="' + completeMap +
-                    '" alt="الخريطة المكتملة" onclick="openLightbox(this.src)" loading="lazy">';
-            } else {
-                html += '<div class="HGH-History-placeholder">خريطة الإجابة غير متوفرة</div>';
-            }
-            html += '<p class="HGH-History-exercise-map-caption">' + answerCaption + '</p>';
-            html += '</div>';
-            html += '</div>';
-            html += '</div>';
-
-            container.innerHTML = html;
-
-            // Attach event listener
-            var btn = document.getElementById('show-btn-' + uniqueId);
-            var wrapper = document.getElementById('answer-wrapper-' + uniqueId);
-            if (!btn || !wrapper) return;
-
-            btn.addEventListener('click', function() {
-                var isRevealed = wrapper.classList.contains('revealed');
-                if (isRevealed) {
-                    wrapper.classList.remove('revealed');
-                    btn.classList.remove('revealed');
-                    btn.innerHTML = '<span class="HGH-History-btn-icon">▼</span> ' + btn.getAttribute(
-                        'data-show-text');
-                } else {
-                    wrapper.classList.add('revealed');
-                    btn.classList.add('revealed');
-                    btn.innerHTML = '<span class="HGH-History-btn-icon">▼</span> ' + btn.getAttribute(
-                        'data-hide-text');
-                }
-            });
-        }
-
-        /* ================================================================
-           CALL THE EXERCISE FUNCTIONS FOR THIS LESSON
-           To reuse these exercises for another lesson:
-           1. Keep the function definitions above.
-           2. Change the parameters below to match the new lesson's content.
-           ================================================================ */
-
-        // --- Type 01: Definitions (3 terms from the WWI lesson) ---
-        historyExType01({
-            containerId: 'exercise-type01-container',
-            title: '📝 عرّف المصطلحات التالية',
-            showBtnText: 'إظهار الإجابة',
-            hideBtnText: 'إخفاء الإجابة',
-            answerLabel: '📖 التعريف:',
-            exercises: [{
+    });
+</script>
+<script>
+    // Populate the exercises (data stays in the exercise page)
+    historyExType01({
+        containerId: 'exercise-type01-container',
+        title: '📝 عرّف المصطلحات التالية',
+        showBtnText: 'إظهار الإجابة',
+        hideBtnText: 'إخفاء الإجابة',
+        answerLabel: '📖 التعريف:',
+        exercises: [
+            {
                 term: 'السياسة العالمية (Weltpolitik)',
                 answer: 'استراتيجية توسعية انتهجها الإمبراطور الألماني <strong>غليوم الثاني</strong> بعد إقالة بسمارك عام 1890، هدفت إلى بناء أسطول بحري ضخم، واقتناص مستعمرات في إفريقيا وآسيا، ومد النفوذ الاقتصادي عبر مشروع سكة حديد برلين-بغداد. أدت هذه السياسة إلى صدام مباشر مع المصالح البريطانية والفرنسية والروسية، وساهمت في تشكيل أحلاف مضادة لألمانيا.'
-            }, {
+            },
+            {
                 term: 'الحلف الثلاثي',
                 answer: 'تحالف عسكري دفاعي نشأ بين <strong>ألمانيا والإمبراطورية النمساوية المجرية</strong> (أكتوبر 1879)، وانضمت إليه <strong>إيطاليا</strong> (مارس 1882). هدف إلى عزل فرنسا والحفاظ على الوضع القائم في أوروبا. انسحبت إيطاليا منه عام 1915، وتدعم الحلف لاحقاً بانضمام <strong>الدولة العثمانية</strong> (1914) و<strong>بلغاريا</strong> (1915) ليشكل نواة "دول المركز" خلال الحرب العالمية الأولى.'
-            }, {
+            },
+            {
                 term: 'جمعية الأمم',
                 answer: 'منظمة دولية تأسست عام 1920 بموجب <strong>معاهدة فرساي</strong> ومقرها <strong>جنيف</strong>، استناداً إلى المبدأ الرابع عشر من برنامج الرئيس الأمريكي <strong>وودرو ويلسون</strong>. هدفت إلى ضمان الأمن الجماعي، والحد من التسلح، وتسوية النزاعات سلمياً. لكنها افتقرت إلى جيش دائم، وتطلبت قراراتها الإجماع، ولم تنضم إليها <strong>الولايات المتحدة</strong>، مما أضعف فعاليتها وجعلها عاجزة عن منع الحرب العالمية الثانية.'
-            }]
-        });
+            }
+        ]
+    });
 
-        // --- Type 02: Map completion (Europe before WWI) ---
-        historyExType02({
-            containerId: 'exercise-type02-container',
-            title: '🗺️ أكمل الخريطة التالية',
-            incompleteMap: 'assets2/exercises/history/worldBeforeWWI1.jpg',
-            completeMap: 'assets2/exercises/history/worldBeforeWWI2.jpg',
-            caption: 'خريطة أوروبا قبل الحرب العالمية الأولى – أجب عن الأسئلة ثم تحقق من الإجابة',
-            answerCaption: 'الخريطة المكتملة – نموذج الإجابة',
-            showBtnText: 'إظهار الإجابة',
-            hideBtnText: 'إخفاء الإجابة',
-            answerBadge: '🗺️ الإجابة'
+    historyExType02({
+        containerId: 'exercise-type02-container',
+        title: '🗺️ أكمل الخريطة التالية',
+        incompleteMap: 'assets2/exercises/history/worldBeforeWWI1.jpg',
+        completeMap: 'assets2/exercises/history/worldBeforeWWI2.jpg',
+        caption: 'خريطة أوروبا قبل الحرب العالمية الأولى – أجب عن الأسئلة ثم تحقق من الإجابة',
+        answerCaption: 'الخريطة المكتملة – نموذج الإجابة',
+        showBtnText: 'إظهار الإجابة',
+        hideBtnText: 'إخفاء الإجابة',
+        answerBadge: '🗺️ الإجابة'
+    });
+
+/* ================================================================
+   EXERCISE RENDERING FUNCTIONS (reusable for any exercise page)
+   ================================================================ */
+
+/**
+ * Renders a list of definition exercises.
+ * @param {Object} config
+ * @param {string} config.containerId  – ID of the container element
+ * @param {string} config.title        – section title
+ * @param {Array}  config.exercises    – array of { term, answer }
+ * @param {string} [config.showBtnText] – default 'إظهار الإجابة'
+ * @param {string} [config.hideBtnText] – default 'إخفاء الإجابة'
+ * @param {string} [config.answerLabel] – default '📖 التعريف:'
+ */
+function historyExType01(config) {
+    var container = document.getElementById(config.containerId);
+    if (!container) {
+        console.warn('historyExType01: container #' + config.containerId + ' not found.');
+        return;
+    }
+    var showBtnText = config.showBtnText || 'إظهار الإجابة';
+    var hideBtnText = config.hideBtnText || 'إخفاء الإجابة';
+    var answerLabel = config.answerLabel || '📖 التعريف:';
+    var exercises = config.exercises || [];
+    var title = config.title || 'عرّف المصطلحات التالية';
+
+    var html = '<h2 class="HGH-History-exercise-section-title">' + title + '</h2>';
+    exercises.forEach(function(ex, index) {
+        var num = index + 1;
+        html += '<div class="HGH-History-exercise-item" data-exercise-index="' + index + '">';
+        html += '<div class="HGH-History-exercise-term"><span class="HGH-History-exercise-number">' + num + '</span>' + ex.term + '</div>';
+        html += '<div class="HGH-History-exercise-answer-wrapper" id="answer-wrapper-' + config.containerId + '-' + index + '">';
+        html += '<div class="HGH-History-exercise-answer-content"><strong>' + answerLabel + '</strong> ' + ex.answer + '</div>';
+        html += '</div>';
+        html += '<button class="HGH-History-exercise-show-btn" id="show-btn-' + config.containerId + '-' + index + '" data-target="answer-wrapper-' + config.containerId + '-' + index + '" data-show-text="' + showBtnText + '" data-hide-text="' + hideBtnText + '">';
+        html += '<span class="HGH-History-btn-icon">▼</span> ' + showBtnText;
+        html += '</button>';
+        html += '</div>';
+    });
+    container.innerHTML = html;
+
+    exercises.forEach(function(_, index) {
+        var btn = document.getElementById('show-btn-' + config.containerId + '-' + index);
+        var wrapper = document.getElementById('answer-wrapper-' + config.containerId + '-' + index);
+        if (!btn || !wrapper) return;
+        btn.addEventListener('click', function() {
+            var isRevealed = wrapper.classList.contains('revealed');
+            if (isRevealed) {
+                wrapper.classList.remove('revealed');
+                btn.classList.remove('revealed');
+                btn.innerHTML = '<span class="HGH-History-btn-icon">▼</span> ' + btn.getAttribute('data-show-text');
+            } else {
+                wrapper.classList.add('revealed');
+                btn.classList.add('revealed');
+                btn.innerHTML = '<span class="HGH-History-btn-icon">▼</span> ' + btn.getAttribute('data-hide-text');
+            }
         });
-    </script>
+    });
+}
+
+/**
+ * Renders a map‑completion exercise.
+ * @param {Object} config
+ * @param {string} config.containerId    – container ID
+ * @param {string} config.title          – section title
+ * @param {string} config.incompleteMap  – path to incomplete map image
+ * @param {string} config.completeMap    – path to complete map image
+ * @param {string} [config.caption]      – caption under the incomplete map
+ * @param {string} [config.answerCaption]– caption under the complete map
+ * @param {string} [config.showBtnText]  – default 'إظهار الإجابة'
+ * @param {string} [config.hideBtnText]  – default 'إخفاء الإجابة'
+ * @param {string} [config.answerBadge]  – badge text on the answer map
+ */
+function historyExType02(config) {
+    var container = document.getElementById(config.containerId);
+    if (!container) {
+        console.warn('historyExType02: container #' + config.containerId + ' not found.');
+        return;
+    }
+    var title = config.title || 'أكمل الخريطة التالية';
+    var incompleteMap = config.incompleteMap || '';
+    var completeMap = config.completeMap || '';
+    var caption = config.caption || '';
+    var answerCaption = config.answerCaption || 'الخريطة المكتملة (الإجابة)';
+    var showBtnText = config.showBtnText || 'إظهار الإجابة';
+    var hideBtnText = config.hideBtnText || 'إخفاء الإجابة';
+    var answerBadge = config.answerBadge || '🗺️ الإجابة';
+    var uniqueId = config.containerId + '-map';
+
+    var html = '<h2 class="HGH-History-exercise-section-title">' + title + '</h2>';
+    html += '<div class="HGH-History-exercise-map-wrapper">';
+    if (incompleteMap) {
+        html += '<img src="' + incompleteMap + '" alt="خريطة غير مكتملة" onclick="openLightbox(this.src)" loading="lazy">';
+    } else {
+        html += '<div class="HGH-History-placeholder">الخريطة غير متوفرة</div>';
+    }
+    if (caption) html += '<p class="HGH-History-exercise-map-caption">' + caption + '</p>';
+    html += '</div>';
+    html += '<div style="text-align:center;margin-top:14px;">';
+    html += '<button class="HGH-History-exercise-show-btn" id="show-btn-' + uniqueId + '" data-show-text="' + showBtnText + '" data-hide-text="' + hideBtnText + '">';
+    html += '<span class="HGH-History-btn-icon">▼</span> ' + showBtnText;
+    html += '</button>';
+    html += '</div>';
+    html += '<div class="HGH-History-exercise-answer-wrapper" id="answer-wrapper-' + uniqueId + '">';
+    html += '<div class="HGH-History-exercise-map-answer">';
+    html += '<span class="HGH-History-exercise-map-label">' + answerBadge + '</span>';
+    html += '<div class="HGH-History-exercise-map-wrapper">';
+    if (completeMap) {
+        html += '<img src="' + completeMap + '" alt="الخريطة المكتملة" onclick="openLightbox(this.src)" loading="lazy">';
+    } else {
+        html += '<div class="HGH-History-placeholder">خريطة الإجابة غير متوفرة</div>';
+    }
+    html += '<p class="HGH-History-exercise-map-caption">' + answerCaption + '</p>';
+    html += '</div>';
+    html += '</div>';
+    html += '</div>';
+    container.innerHTML = html;
+
+    var btn = document.getElementById('show-btn-' + uniqueId);
+    var wrapper = document.getElementById('answer-wrapper-' + uniqueId);
+    if (!btn || !wrapper) return;
+    btn.addEventListener('click', function() {
+        var isRevealed = wrapper.classList.contains('revealed');
+        if (isRevealed) {
+            wrapper.classList.remove('revealed');
+            btn.classList.remove('revealed');
+            btn.innerHTML = '<span class="HGH-History-btn-icon">▼</span> ' + btn.getAttribute('data-show-text');
+        } else {
+            wrapper.classList.add('revealed');
+            btn.classList.add('revealed');
+            btn.innerHTML = '<span class="HGH-History-btn-icon">▼</span> ' + btn.getAttribute('data-hide-text');
+        }
+    });
+}
+    // Activate the print modal
+    HGH_setupExercisePrint({
+        type01ContainerId: 'exercise-type01-container',
+        type02ContainerId: 'exercise-type02-container'
+    });
+</script>
 </body>
 </html>

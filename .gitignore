@@ -1,0 +1,10 @@
+# نظام التشغيل
+.DS_Store
+Thumbs.db
+
+# بيئات التطوير
+node_modules/
+.vscode/
+
+# ملفات Netlify المحلية (لا تحتاج للرفع)
+.netlify/
